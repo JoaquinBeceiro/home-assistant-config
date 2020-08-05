@@ -1,0 +1,4 @@
+platform: manual
+name: "HA Alarm"
+trigger_time: 100
+disarm_after_trigger: false
