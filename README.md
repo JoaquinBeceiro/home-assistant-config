@@ -1,5 +1,11 @@
 # HomeAssistant personal config
 
+
+## Screenshots
+
+### Dashboard - Home
+![Dashboard home 1](images/screenshots/dashboard-home1.png)
+
 ## Devices
 
 <table align="center" border="0" width="100%">
@@ -14,7 +20,7 @@
     <tr>
       <td>1</td>
       <td>
-        <img src="images/nuc-j3455.jpg" alt="drawing" width="200" />
+        <img src="images/devices/nuc-j3455.jpg" alt="drawing" width="200" />
         <h3>Intel NUC J3455</h3>
       </td>
       <td>
@@ -24,7 +30,7 @@
     <tr>
       <td>2</td>
       <td>
-        <img src="images/google-home.jpg" alt="drawing" width="200" />
+        <img src="images/devices/google-home.jpg" alt="drawing" width="200" />
         <h3>Google Home Mini</h3>
       </td>
       <td>
@@ -34,7 +40,7 @@
     <tr>
       <td>1</td>
       <td>
-        <img src="images/echo-show.jpg" alt="drawing" width="200" />
+        <img src="images/devices/echo-show.jpg" alt="drawing" width="200" />
         <h3>Echo show</h3>
       </td>
       <td>
@@ -44,7 +50,7 @@
     <tr>
       <td>2</td>
       <td>
-        <img src="images/led-controller.jpg" alt="drawing" width="200" />
+        <img src="images/devices/led-controller.jpg" alt="drawing" width="200" />
         <h3>LED strip controller</h3>
       </td>
       <td>
@@ -54,7 +60,7 @@
     <tr>
       <td>2</td>
       <td>
-        <img src="images/mi-box-s.jpg" alt="drawing" width="200" />
+        <img src="images/devices/mi-box-s.jpg" alt="drawing" width="200" />
         <h3>Mi Box S</h3>
       </td>
       <td>
@@ -64,7 +70,7 @@
     <tr>
       <td>1</td>
       <td>
-        <img src="images/mi-wifi-3.jpg" alt="drawing" width="200" />
+        <img src="images/devices/mi-wifi-3.jpg" alt="drawing" width="200" />
         <h3>Mi WiFi 3</h3>
       </td>
       <td>
@@ -74,7 +80,7 @@
     <tr>
       <td>1</td>
       <td>
-        <img src="images/rmmini.jpg" alt="drawing" width="200" />
+        <img src="images/devices/rmmini.jpg" alt="drawing" width="200" />
         <h3>RM mini</h3>
       </td>
       <td>
@@ -84,7 +90,7 @@
     <tr>
       <td>1</td>
       <td>
-        <img src="images/pzem.jpg" alt="drawing" width="200" />
+        <img src="images/devices/pzem.jpg" alt="drawing" width="200" />
         <h3>PZEM</h3>
       </td>
       <td>
@@ -94,7 +100,7 @@
     <tr>
       <td>3</td>
       <td>
-        <img src="images/sonoff-pow.jpg" alt="drawing" width="200" />
+        <img src="images/devices/sonoff-pow.jpg" alt="drawing" width="200" />
         <h3>Sonoff POW</h3>
       </td>
       <td>
@@ -104,7 +110,7 @@
     <tr>
       <td>4</td>
       <td>
-        <img src="images/sonoff.jpg" alt="drawing" width="200" />
+        <img src="images/devices/sonoff.jpg" alt="drawing" width="200" />
         <h3>Sonoff</h3>
       </td>
       <td>
@@ -114,7 +120,7 @@
     <tr>
       <td>1</td>
       <td>
-        <img src="images/sonoff-switch-2.jpg" alt="drawing" width="200" />
+        <img src="images/devices/sonoff-switch-2.jpg" alt="drawing" width="200" />
         <h3>Sonoff wall 2 gang</h3>
       </td>
       <td>
@@ -124,7 +130,7 @@
     <tr>
       <td>1</td>
       <td>
-        <img src="images/wemos.jpg" alt="drawing" width="200" />
+        <img src="images/devices/wemos.jpg" alt="drawing" width="200" />
         <h3>Wemos</h3>
       </td>
       <td>
@@ -134,7 +140,7 @@
     <tr>
       <td>1</td>
       <td>
-        <img src="images/xiaomi-bulb.jpeg" alt="drawing" width="200" />
+        <img src="images/devices/xiaomi-bulb.jpeg" alt="drawing" width="200" />
         <h3>Xiaomi Bulb</h3>
       </td>
       <td>
@@ -144,7 +150,7 @@
     <tr>
       <td>2</td>
       <td>
-        <img src="images/xiaomi-button.jpg" alt="drawing" width="200" />
+        <img src="images/devices/xiaomi-button.jpg" alt="drawing" width="200" />
         <h3>Xiaomi button</h3>
       </td>
       <td>
@@ -154,7 +160,7 @@
     <tr>
       <td>1</td>
       <td>
-        <img src="images/xiaomi-door.jpg" alt="drawing" width="200" />
+        <img src="images/devices/xiaomi-door.jpg" alt="drawing" width="200" />
         <h3>Xiaomi door sensor</h3>
       </td>
       <td>
@@ -164,7 +170,7 @@
     <tr>
       <td>1</td>
       <td>
-        <img src="images/xiaomi-motion.jpg" alt="drawing" width="200" />
+        <img src="images/devices/xiaomi-motion.jpg" alt="drawing" width="200" />
         <h3>Xiaomi motion sensor</h3>
       </td>
       <td>
@@ -174,7 +180,7 @@
     <tr>
       <td>2</td>
       <td>
-        <img src="images/xiaomi-temperature.jpg" alt="drawing" width="200" />
+        <img src="images/devices/xiaomi-temperature.jpg" alt="drawing" width="200" />
         <h3>Xiaomi temperature/humidity sensor</h3>
       </td>
       <td>
@@ -184,7 +190,7 @@
     <tr>
       <td>2</td>
       <td>
-        <img src="images/cc2531.jpg" alt="drawing" width="200" />
+        <img src="images/devices/cc2531.jpg" alt="drawing" width="200" />
         <h3>CC2531 USB</h3>
       </td>
       <td>
@@ -194,5 +200,8 @@
   <tbody>
 </table>
 
+
+## Automations
+**WIP**
 
 
