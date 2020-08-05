@@ -1,0 +1,205 @@
+presence_livingroom_notifications_when_detected:
+  alias: "Occupancy Detection - livingroom - Notifications"
+  sequence:
+  - condition: state
+    entity_id: binary_sensor.camera_livingroom
+    state: 'on'
+  - data:
+      entity_id: camera.living_room
+      filename: /config/tmp/camera_snapshot.jpg
+    service: camera.snapshot
+  - delay: '2'
+  - service: telegram_bot.send_message
+    data_template:
+        chat_id: !secret telegram_bot_chat_ids
+        title: '🚨'
+        message: "Motion detected! - {{ sensor }}"
+  - data:
+      data:
+        photo:
+        - capture: Snapshoot
+          caption:  ""
+          file: /config/tmp/camera_snapshot.jpg
+      message: "Motion detected!"
+      title: "Motion detected!"
+    service: notify.telegram
+
+alarm_trigger:
+  alias: "Alarm trigger"
+  sequence:
+    - service: alarm_control_panel.alarm_trigger
+      entity_id: alarm_control_panel.ha_alarm
+    - service: telegram_bot.send_message
+      data_template:
+        chat_id: !secret telegram_bot_chat_ids
+        title: '🚨'
+        message: 'Alarm triggered!'
+        inline_keyboard:
+            - "DISARM:/offalarm"
+    - data:
+        entity_id: camera.living_room
+        filename: /config/tmp/camera_snapshot.jpg
+      service: camera.snapshot
+    - data:
+        file: /config/tmp/camera_snapshot.jpg
+      service: telegram_bot.send_photo
+
+disarm_alarm:
+  alias: "Disarm alarm"
+  sequence:
+    - service: media_player.media_stop
+      data:
+        entity_id: media_player.bedroom_speaker
+    - service: media_player.volume_set
+      data:
+        entity_id: "media_player.bedroom_speaker"
+        volume_level: 1
+    - service: tts.google_translate_say
+      data_template:
+        entity_id: "media_player.bedroom_speaker"
+        message: "Alarm disarmed"
+    - service: notify.telegram
+      data_template:
+        title: '🚨'
+        message: 'Alarm disarmed'
+        
+arm_alarm:
+  alias: "Arm alarm"
+  sequence:
+    - service: media_player.media_stop
+      data:
+        entity_id: media_player.bedroom_speaker
+    - service: media_player.volume_set
+      data:
+        entity_id: "media_player.bedroom_speaker"
+        volume_level: 1
+    - service: tts.google_translate_say
+      data_template:
+        entity_id: "media_player.bedroom_speaker"
+        message: "Alarm armed"
+    - service: homeassistant.turn_on
+      entity_id: automation.police_alarm_on_google_home_motion
+    - service: notify.telegram
+      data_template:
+        title: '🚨'
+        message: 'Alarm armed successfully!'
+    
+
+alarm_siren:
+  alias: "Alarm siren"
+  sequence:
+    - service: media_player.volume_set
+      data:
+        entity_id: "media_player.bedroom_speaker"
+        volume_level: 1
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.bedroom_speaker
+        media_content_id: !secret alarm_sound
+        media_content_type: "audio/mp4"
+
+# BED WARM TIMER
+start_bed_warm_timer:
+  alias: Start Bed Warm Timer
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.bed
+    - service: timer.start
+      data_template:
+        entity_id: timer.bed_warm_sleep
+        duration: '{{ states.input_number.bed_warm_sleep.state | multiply(60) | int }}'
+        
+        
+# Head light fade in
+set_headlight_bright:
+    alias: Set HeadLight bright
+    sequence:
+      - alias: Dim Head Light
+        service: light.turn_on
+        entity_id: light.head_light
+        data_template:
+          brightness: '{{ percentage | int }}'
+
+
+headlight_bright_fade_in:
+  alias: Head Light Fade In
+  sequence:
+    - service: script.turn_on
+      entity_id: script.set_headlight_bright
+      data:
+        variables:
+            percentage: '5'
+    - delay:
+        minutes: 5 
+    - service: script.turn_on
+      entity_id: script.set_headlight_bright
+      data:
+        variables:
+            percentage: '10'
+    - delay:
+        minutes: 5
+    - service: script.turn_on
+      entity_id: script.set_headlight_bright
+      data:
+        variables:
+            percentage: '20'
+    - delay:
+        minutes: 5
+    - service: script.turn_on
+      entity_id: script.set_headlight_bright
+      data:
+        variables:
+            percentage: '35'
+    - delay:
+        minutes: 5
+    - service: script.turn_on
+      entity_id: script.set_headlight_bright
+      data:
+        variables:
+            percentage: '50'
+    - delay:
+        minutes: 5
+    - service: script.turn_on
+      entity_id: script.set_headlight_bright
+      data:
+        variables:
+            percentage: '120'
+    - delay:
+        minutes: 5
+    - service: script.turn_on
+      entity_id: script.set_headlight_bright
+      data:
+        variables:
+            percentage: '170'
+    - delay:
+        minutes: 5
+    - service: script.turn_on
+      entity_id: script.set_headlight_bright
+      data:
+        variables:
+            percentage: '200'
+    - delay:
+        minutes: 5
+    - service: script.turn_on
+      entity_id: script.set_headlight_bright
+      data:
+        variables:
+            percentage: '230'
+    - delay:
+        minutes: 120
+    - service: script.turn_on
+      entity_id: script.set_headlight_bright
+      data:
+        variables:
+            percentage: '255'
+
+tv_only_audio:
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.broadlink
+        device: television
+        command: 
+          - tv_config
+          - tv_enter
+        delay_secs: 1

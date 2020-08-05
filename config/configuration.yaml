@@ -1,0 +1,263 @@
+homeassistant:
+  name: Home
+  whitelist_external_dirs:
+    - /tmp
+  customize: !include customize.yaml
+
+  customize_glob:
+    "sensor.dark_sky*":
+      hidden: true
+  
+  auth_providers:
+   - type: legacy_api_password
+     api_password: !secret http_password
+   - type: trusted_networks
+     trusted_networks:
+        - 192.168.0.0/24
+        - 192.168.31.0/24
+   - type: homeassistant
+
+
+recorder:
+  db_url: !secret recorder_db_url
+
+remote:
+  - platform: broadlink
+    host: !secret rmmini_ip
+    mac: !secret rmmini_mac
+
+# SmartIR
+smartir:
+    update_branch: rc
+
+# CLIMATE
+climate:
+  - platform: smartir
+    name: Air conditioner
+    unique_id: air_conditioner
+    device_code: 1382
+    controller_data: !secret rmmini_ip
+    temperature_sensor: sensor.mi_t_582d3433871b
+    humidity_sensor: sensor.mi_h_582d3433871b
+    power_sensor: binary_sensor.ac_power
+
+panel_iframe:
+  networkmap:
+    title: 'Zigbee Map'
+    url: '/local/community/zigbee2mqtt_networkmap/map.html'
+    icon: 'mdi:graphql'
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# IFTTT
+ifttt:
+  key: !secret ifttt_key
+    
+# Weather 
+weather:
+  - platform: darksky
+    api_key: !secret darksky_apikey
+      
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.    
+device_tracker:
+  - platform: bluetooth_tracker
+  - platform: bluetooth_le_tracker
+  - platform: xiaomi
+    host: !secret router_ip
+    password: !secret router_password
+    interval_seconds: 30
+    new_device_defaults:
+        track_new_devices: false
+  - platform: xiaomi_miio
+    host: !secret xiaomi_lamp_ip
+    token: !secret xiaomi_app_token
+
+# Telegram 
+telegram_bot:
+  platform: polling
+  api_key: !secret telegram_bot_key
+  allowed_chat_ids:
+    -  !secret telegram_bot_chat_ids
+    
+notify:
+  - name: Telegram
+    platform: telegram
+    api_key: !secret telegram_bot_key
+    chat_id:  !secret telegram_bot_chat_ids
+
+    
+    
+# Text to speech
+tts:
+  - platform: google_translate
+
+camera:
+  - platform: yi
+    name: Living room
+    host: !secret yi_cam_ip
+    password: !secret yi_cam_password
+
+# INPUTS
+input_datetime:
+    turn_on_waterheater_mf:
+        name: Time turn on MF
+        has_date: false
+        has_time: true
+    wake_up_time:
+        name: Wake up time
+        has_date: false
+        has_time: true
+        initial: '08:00'
+        
+input_boolean:
+  alarm_weekday:
+    name: Alarm Weekday
+    initial: on
+    icon: mdi:calendar
+  alarm_weekend:
+    name: Alarm Weekend     
+    initial: off
+    icon: mdi:calendar
+
+input_number:
+    bed_left_warm_sleep:
+        name: Bed Left warm sleep
+        initial: 15
+        min: 0
+        max: 120
+        step: 10
+    bed_right_warm_sleep:
+        name: Bed Right warm sleep
+        initial: 15
+        min: 0
+        max: 120
+        step: 10
+    24hour_power_consumption:
+        name: 24hour_power_consumption
+        mode: box
+        min: 0
+        max: 10000
+        unit_of_measurement: kWh
+    heater_24hour_power_consumption:
+        name: heater_24hour_power_consumption
+        mode: box
+        min: 0
+        max: 10000
+        unit_of_measurement: kWh
+    waterheater_24hour_power_consumption:
+        name: waterheater_24hour_power_consumption
+        mode: box
+        min: 0
+        max: 10000
+        unit_of_measurement: kWh
+    refrigerator_24hour_power_consumption:
+        name: refrigerator_24hour_power_consumption
+        mode: box
+        min: 0
+        max: 10000
+        unit_of_measurement: kWh
+
+# ./INPUTS
+    
+webhook:
+# ZIGBEE2MQTT
+zigbee2mqtt_networkmap:
+
+# SHOPPING LIST 
+shopping_list:
+
+# MEDIA PLAYER
+media_player:
+  - platform: androidtv
+    name: Livingroom MiBox
+    host: 192.168.31.60
+    adb_server_ip: 172.17.0.5
+    adb_server_port: 5037
+    get_sources: true
+
+google_assistant:
+    project_id: !secret google_assistant_project_id
+    exposed_domains:
+    - switch
+    - light
+    - climate
+    entity_config:
+        group.all_automations:
+          expose: false
+    
+# CLOUD
+cloud:
+  alexa:
+    filter:
+      exclude_domains:
+        - automation
+        - scripts
+        - groups
+        - binary_sensor
+        - input_boolean
+  google_actions:
+    filter:
+      exclude_domains:
+        - automation
+        - scripts
+        - groups
+        - binary_sensor
+        - input_boolean
+        
+        
+utility_meter:
+  monthly_home_energy:
+    source: sensor.home_total
+    cycle: monthly
+  weekly_home_energy:
+    source: sensor.home_total
+    cycle: weekly
+  daily_home_energy:
+    source: sensor.home_total
+    cycle: daily
+  daily_heater_energy:
+    source: sensor.heater_total
+    cycle: daily
+  daily_waterheater_energy:
+    source: sensor.waterheater_total
+    cycle: daily
+  daily_refrigerator_energy:
+    source: sensor.refrigerator_total
+    cycle: daily
+
+google:
+  client_id: !secret google_client_id
+  client_secret: !secret google_client_secret
+    
+### INCLUDES ###
+
+# API
+api: !include api.yaml
+# TIMERS
+timer: !include timers.yaml
+# ALARM
+alarm_control_panel: !include alarm.yaml
+# INFLUXDB
+#influxdb: !include influxdb.yaml
+# GROUPS
+group: !include groups.yaml
+# LIGHTS
+light: !include_dir_merge_list lights
+# AUTOMATIONS
+automation: !include_dir_merge_list automations
+# SCRIPTS
+script: !include_dir_merge_named scripts
+# SWITCHES
+# switch: !include switches.yaml
+# SWITCHES
+switch: !include_dir_merge_list switches
+# BINARY SENSORS
+binary_sensor: !include binary_sensors.yaml
+# SENSORS
+sensor: !include sensors.yaml
+# ZONES
+zone: !include zones.yaml
+# FRONTEND
+frontend:
+  themes: !include_dir_merge_named themes

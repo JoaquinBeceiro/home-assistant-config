@@ -1,0 +1,136 @@
+########## TABS ##########
+
+livingroom_view:
+  name: Livingroom
+  icon: mdi:sofa
+  entities:
+    - group.livingroom
+    - group.livingroom_tv
+    - media_player.television
+    - group.heater
+
+bedroom_view:
+  name: Bedroom
+  icon: mdi:bed-empty
+  entities:
+    - group.bedroom
+    - group.bed
+    - media_player.bedroom
+    - group.alarm_clock
+   
+kitchen_view:
+  name: Kitchen
+  icon: mdi:fridge-outline
+  entities:
+    - group.kitchen
+  
+bathroom_view:
+  name: Bedroom
+  icon: mdi:toilet
+  entities:    
+    - group.water_heater
+  
+hall_view:
+  name: Hall
+  icon: mdi:door
+  entities:
+    - group.hall
+
+alarm_view:
+  name: Alarm
+  icon: mdi:alarm-light-outline
+  entities:
+    - group.alarm
+
+########## GROUPS ##########
+
+livingroom:
+  name: Livingroom
+  entities:
+    - binary_sensor.camera_livingroom
+    - binary_sensor.motion_livingroom
+    - switch.living_room_light
+    - camera.living_room
+    - sensor.livingroom_temperature
+    - sensor.livingroom_humidity
+    - history_graph.livingroom_temp_hum
+
+    
+livingroom_tv:
+  name: Livingroom TV
+  entities:
+    - binary_sensor.livingroom_tv_power
+    - switch.tv
+    - switch.tv_volume_up
+    - switch.tv_volume_down
+    
+hall:
+  name: Hall
+  entities:
+    - binary_sensor.motion_hall
+    - switch.hall_light
+    - switch.door
+    
+kitchen:
+  name: Kitchen
+  entities:
+    - switch.kitchen_light
+    - switch.bar_light
+    
+water_heater:
+ name: Calefon
+ entities:
+   - switch.bathroom_waterheater
+   - sensor.waterheater_current
+   - sensor.waterheater_power
+   - sensor.waterheater_voltage
+   - input_datetime.turn_on_waterheater_mf
+   - automation.turn_on_waterheater_at_x_time_m_f
+   - automation.waterheater_consumption_to_spreadsheet
+   
+heater:
+ name: Heater
+ entities:
+   - switch.heater
+   - sensor.heater_current
+   - sensor.heater_power
+   - sensor.heater_voltage
+   - climate.livingroom
+   - automation.heater_consumption_to_spreadsheet
+
+bedroom:
+  name: Bedroom
+  entities:
+    - light.head_light
+    - switch.bedroom_light
+
+bed:
+  name: Bed
+  entities:
+    - timer.bed_warm_sleep
+    - input_number.bed_warm_sleep
+    - switch.bed
+
+########## ALARM CLOCK ##########
+
+alarm_clock:
+  name: Alarm Clock
+  entities:
+    - binary_sensor.alarm_clock
+    - input_datetime.wake_up_time
+    - input_boolean.alarm_weekday
+    - input_boolean.alarm_weekend
+    - automation.turn_on_headlight_20_minutes_before_alarm_clock
+
+########## ALARM ##########
+
+alarm:
+  name: Alarm
+  entities:
+    - alarm_control_panel.ha_alarm
+    - automation.telegram_presence_notify
+    - automation.turn_on_off_livingroom_lights_when_there_is_movement
+    - automation.police_alarm_on_google_home_motion
+    - automation.hall_sensor_motion_detect_telegram
+    - automation.livingroom_camera_motion_detect_telegram
+    - automation.livingroom_sensor_motion_detect_telegram

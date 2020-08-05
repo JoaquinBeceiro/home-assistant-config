@@ -1,0 +1,11 @@
+- name: Work
+  latitude: !secret zone_work_latitude
+  longitude: !secret zone_work_longitude
+  radius: !secret zone_work_radius
+  icon: mdi:briefcase
+
+- name: Home
+  latitude: !secret zone_home_latitude
+  longitude: !secret zone_home_longitude
+  radius: !secret zone_home_radius
+  icon: mdi:house
