@@ -1,0 +1,8 @@
+- platform: mqtt
+  name: "Bathroom WaterHeater"
+  command_topic: "cmnd/water-warm/power"
+  state_topic: "stat/water-warm/POWER"
+  payload_on: "ON"
+  payload_off: "OFF"
+  icon: mdi:shower
+  retain: false

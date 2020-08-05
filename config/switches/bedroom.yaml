@@ -1,0 +1,70 @@
+- platform: mqtt
+  name: "Bedroom light"
+  command_topic: "cmnd/bedroom-light/power"
+  state_topic: "stat/bedroom-light/POWER"
+  payload_on: "ON"
+  payload_off: "OFF"
+  icon: mdi:lightbulb
+  retain: false
+
+- platform: mqtt
+  name: "Bed"
+  command_topic: "cmnd/bed/power"
+  state_topic: "stat/bed/POWER"
+  payload_on: "ON"
+  payload_off: "OFF"
+  icon: mdi:hotel
+  retain: false
+
+# 4CH
+- platform: mqtt
+  name: "Bed Left"
+  state_topic: "stat/tasmota_4ch/POWER1"
+  command_topic: "cmnd/tasmota_4ch/POWER1"
+  availability_topic: "tele/tasmota_4ch/LWT"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  retain: false
+  icon: mdi:bed-king
+
+- platform: mqtt
+  name: "Bed Right"
+  state_topic: "stat/tasmota_4ch/POWER2"
+  command_topic: "cmnd/tasmota_4ch/POWER2"
+  availability_topic: "tele/tasmota_4ch/LWT"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  retain: false
+  icon: mdi:bed-king
+
+- platform: mqtt
+  name: "Light Right"
+  state_topic: "stat/tasmota_4ch/POWER3"
+  command_topic: "cmnd/tasmota_4ch/POWER3"
+  availability_topic: "tele/tasmota_4ch/LWT"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  retain: false
+  icon: mdi:lamp
+
+- platform: mqtt
+  name: "Light Left"
+  state_topic: "stat/tasmota_4ch/POWER4"
+  command_topic: "cmnd/tasmota_4ch/POWER4"
+  availability_topic: "tele/tasmota_4ch/LWT"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  retain: false
+  icon: mdi:lamp
