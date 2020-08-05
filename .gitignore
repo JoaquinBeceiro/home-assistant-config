@@ -10,6 +10,7 @@ __pycache__
 # Directory (contents) ignores
 config/.cloud
 config/.storage
+!config/.storage/lovelace
 config/deps
 
 # Specific file ignores
