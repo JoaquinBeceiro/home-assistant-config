@@ -212,4 +212,14 @@
 
 ## Automations
 
-**WIP**
+### Most important automations
+
+#### [Notify when the water heater is ready](https://github.com/JoaquinBeceiro/home-assistant-config/blob/c82da612f44ed7adee008f6d876e8560fad946e4/config/automations/bathroom.yaml#L20-L68)
+
+##### Automation trigger
+Every time Water Heater is turned on, this automation turns on.
+The Water Heater has a power meter. When this power meter reads 0w and the switch is on, this automations trigers. This automation only run if time is between **09:00HS** and **05:00HS**.
+
+##### Automation tasks
+* Play on Google Home with TTS
+* Text notification with Telegram
