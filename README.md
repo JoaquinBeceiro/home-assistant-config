@@ -1,9 +1,9 @@
 # HomeAssistant personal config
 
-
 ## Screenshots
 
 ### Dashboard - Home
+
 ![Dashboard home 1](images/screenshots/dashboard-home1.png)
 
 ## Devices
@@ -188,7 +188,7 @@
       </td>
     </tr>
     <tr>
-      <td>2</td>
+      <td>1</td>
       <td>
         <img src="images/devices/cc2531.jpg" alt="drawing" width="200" />
         <h3>CC2531 USB</h3>
@@ -197,11 +197,19 @@
         <p>Sniffer - Zigbee to MQTT</p>
       </td>
     </tr>
+    <tr>
+      <td>1</td>
+      <td>
+        <img src="images/devices/yi_dome.jpg" alt="drawing" width="200" />
+        <h3>Yi Dome 1080p</h3>
+      </td>
+      <td>
+        <p>Camera and movement detection</p>
+      </td>
+    </tr>
   <tbody>
 </table>
 
-
 ## Automations
+
 **WIP**
-
-
