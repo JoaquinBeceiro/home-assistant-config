@@ -1,0 +1,75 @@
+# Notify and turn on/off led lights on motion sensor
+- alias: Notify and turn on led lights on motion sensor
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.xiaomi_motion_sensor
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.xiaomi_motion_sensor
+      to: 'off'
+  action:
+    - service_template: 'light.turn_{{trigger.to_state.state}}'
+      entity_id: light.tv_light
+    - condition: and
+      conditions:
+        - condition: template
+          value_template: "{{ is_state('binary_sensor.xiaomi_motion_sensor', 'on') }}"
+    - service: notify.telegram
+      data_template:
+        message: 'Motion on Xiaomi sensor!'
+
+# Turn on light when detect motion on livingroom 
+- alias: Turn on livingroom lights on motion at night
+  initial_state: false
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_livingroom
+      to: 'on'
+  action:
+    - service: 'light.turn_on'
+      data:
+          entity_id: light.tv_light
+          brightness: 1
+
+# Turn off light when detect motion on livingroom 
+- alias: Turn off livingroom lights on motion at night
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_livingroom
+      to: 'off'
+  condition:
+    - condition: time
+      after: '23:00:00'
+      before: '07:10:00'
+  action:
+    - service: 'light.turn_off'
+      entity_id: light.tv_light
+
+
+# ON/OFF TV LIGHT depending on TV STATUS
+- alias: Power on tv light - TV
+  trigger:
+    platform: state
+    entity_id: binary_sensor.tv_status
+    to: 'on'
+  condition:
+    - condition: time
+      after: '18:00:00'
+      before: '07:00:00'
+  action:
+    service: light.turn_on
+    entity_id: light.tv_light
+    data:
+      brightness: 255
+      white_value: 255
+
+- alias: Power off tv light - TV
+  trigger:
+    platform: state
+    entity_id: binary_sensor.tv_status
+    to: 'off'
+  action:
+    service: light.turn_off
+    entity_id: light.tv_light
+    data:
+      transition: 120

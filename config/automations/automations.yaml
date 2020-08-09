@@ -1,0 +1,81 @@
+# ALARM SETED ON PHONE
+- alias: Set alarm from phone clock
+  trigger:
+    platform: webhook
+    webhook_id: "set_alarm_clock"
+  action:
+    - service: input_datetime.set_datetime
+      data_template:
+        entity_id: input_datetime.wake_up_time
+        time: "{{ trigger.data.alarm | int | timestamp_custom('%H:%M') }}"
+
+# ALARM CHANGE NOTIFY GOOGLE HOME AND CHANGE WATERHEATER TIME
+- alias: Alarm change google home
+  trigger:
+    platform: state
+    entity_id: input_datetime.wake_up_time
+  action:
+    - service: media_player.volume_set
+      data:
+        entity_id: "media_player.bedroom_speaker"
+        volume_level: 1
+    - service: tts.google_translate_say
+      data_template:
+        entity_id: "media_player.bedroom_speaker"
+        message: >-
+            Alarm set to 
+            {{ 
+            state_attr('input_datetime.wake_up_time', 'timestamp') | int | timestamp_custom('%H:%M', False) }}
+            {% if is_state('input_boolean.alarm_weekday', 'on') %}
+            on weekdays
+            {% endif %}
+            {% if is_state('input_boolean.alarm_weekday', 'on') and is_state('input_boolean.alarm_weekend', 'on') %} 
+            and
+            {% elif is_state('input_boolean.alarm_weekday', 'off') and is_state('input_boolean.alarm_weekend', 'on') %}
+            on
+            {% endif %}
+            {% if is_state('input_boolean.alarm_weekend', 'on') %}
+            weekends
+            {% endif %}
+    - service: input_datetime.set_datetime
+      data_template:
+        entity_id: input_datetime.turn_on_waterheater_mf
+        time: "{{ (state_attr('input_datetime.wake_up_time', 'timestamp') | int-(60*60)) | timestamp_custom('%H:%M', False)  }}"
+
+
+########## GOOGLE HOME MINI ########## 
+# Google Home TTS
+- alias: 'Google Home Telegram Say'
+  trigger:
+    platform: event
+    event_type: telegram_command
+    event_data:
+      command: '/say'
+  action:
+    - service: media_player.volume_set
+      data:
+        entity_id: "media_player.bedroom_speaker"
+        volume_level: 1
+    - service: tts.google_translate_say
+      data_template:
+        entity_id: "media_player.bedroom_speaker"
+        message: "{{ trigger.event.data.args }}"
+
+- alias: 'Google Home Telegram Say Spanish'
+  trigger:
+    platform: event
+    event_type: telegram_command
+    event_data:
+      command: '/sayes'
+  action:
+    - service: media_player.volume_set
+      data:
+        entity_id: "media_player.bedroom_speaker"
+        volume_level: 1
+    - service: tts.google_translate_say
+      data_template:
+        entity_id: "media_player.bedroom_speaker"
+        message: "{{ trigger.event.data.args }}"
+        language: 'es'
+      
+########## ./GOOGLE HOME MINI ########## 

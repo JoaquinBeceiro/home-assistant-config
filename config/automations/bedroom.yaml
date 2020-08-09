@@ -1,0 +1,267 @@
+- alias: Turn on HeadLight double press (LEFT)
+  trigger:
+    platform: mqtt
+    topic: !secret zigbee2mqtt_button2
+  condition:
+    - condition: template
+      value_template: "{{ 'double' == trigger.payload_json.click }}"
+  action:
+    service: light.toggle
+    entity_id: light.head_light
+    data:
+      brightness: 50
+
+- alias: Turn on HeadLight double press (RIGHT)
+  trigger:
+    platform: mqtt
+    topic: !secret zigbee2mqtt_button1
+  condition:
+    condition: template
+    value_template: "{{ 'double' == trigger.payload_json.click }}"
+  action:
+    service: light.toggle
+    entity_id: light.head_light
+    data:
+      brightness: 50
+
+- alias: Turn on Bedroom side light single press (LEFT)
+  trigger:
+    platform: mqtt
+    topic: !secret zigbee2mqtt_button2
+  condition:
+    condition: template
+    value_template: "{{ 'single' == trigger.payload_json.click }}"
+  action:
+    service: switch.toggle
+    entity_id: switch.light_left
+
+- alias: Turn on Bedroom side light single press (RIGHT)
+  trigger:
+    platform: mqtt
+    topic: !secret zigbee2mqtt_button1
+  condition:
+    condition: template
+    value_template: "{{ 'single' == trigger.payload_json.click }}"
+  action:
+    service: switch.toggle
+    entity_id: switch.light_right
+
+# GOOD NIGHT ROUTINE (RIGHT)
+- alias: Night routine quadruple press (RIGHT)
+  trigger:
+    platform: mqtt
+    topic: !secret zigbee2mqtt_button1
+  condition:
+    - condition: template
+      value_template: "{{ 'quadruple' == trigger.payload_json.click }}"
+    - condition: time
+      after: "18:00:00"
+      before: "05:00:00"
+  action:
+    - service: script.turn_on
+      entity_id: script.good_night_routine
+
+# GOOD MORNING ROUTINE (RIGHT)
+- alias: Good morning routine quadruple press (RIGHT)
+  trigger:
+    platform: mqtt
+    topic: !secret zigbee2mqtt_button1
+  condition:
+    - condition: template
+      value_template: "{{ 'quadruple' == trigger.payload_json.click }}"
+    - condition: time
+      after: "05:00:00"
+      before: "14:00:00"
+  action:
+    - service: script.turn_on
+      entity_id: script.good_morning_routine
+
+# TURN ON/OFF BED WITH BUTTON
+- alias: Toggle bed triple press (RIGHT)
+  trigger:
+    platform: mqtt
+    topic: !secret zigbee2mqtt_button1
+  condition:
+    - condition: template
+      value_template: "{{ 'triple' == trigger.payload_json.click }}"
+  action:
+    service: switch.toggle
+    entity_id: switch.bed_right
+
+- alias: Toggle bed triple press (LEFT)
+  trigger:
+    platform: mqtt
+    topic: !secret zigbee2mqtt_button2
+  condition:
+    - condition: template
+      value_template: "{{ 'triple' == trigger.payload_json.click }}"
+  action:
+    service: switch.toggle
+    entity_id: switch.bed_left
+
+
+# TOGGLE BEDROOM LIGHT WITH BUTTON
+- alias: Toggle bedroom light long press (RIGHT)
+  trigger:
+    platform: mqtt
+    topic: !secret zigbee2mqtt_button1
+  condition:
+    - condition: template
+      value_template: "{{ 'long' == trigger.payload_json.click }}"
+  action:
+    service: switch.toggle
+    entity_id: switch.bedroom_light
+
+- alias: Toggle bedroom light long press  (LEFT)
+  trigger:
+    platform: mqtt
+    topic: !secret zigbee2mqtt_button2
+  condition:
+    - condition: template
+      value_template: "{{ 'long' == trigger.payload_json.click }}"
+  action:
+    service: switch.toggle
+    entity_id: switch.bedroom_light
+
+
+# TOGGLE HEADLIGN ON MQTT
+- alias: Toggle headlight on mqtt
+  trigger:
+    platform: mqtt
+    topic: cmnd/bedroom-light/POWER2
+    payload: "ON"
+  action:
+    service: light.toggle
+    entity_id: light.head_light
+    data:
+      brightness: 255
+
+# BED WARMER DEFAULT SLEEP ON TURN ON (LEFT)
+- alias: Bed left warmer default sleep
+  trigger:
+    platform: state
+    entity_id: switch.bed_left
+    to: "on"
+  action:
+    - service: script.turn_on
+      entity_id: script.start_bed_left_warm_timer
+    - service: notify.telegram
+      data_template:
+        message: "🛏 Bed left warm ON ({{ states.input_number.bed_left_warm_sleep.state | int }}min)"
+
+# TURN OFF BED TIMER ON BED TURN OFF (LEFT)
+- alias: Bed warmer turn off timer on switch off bed left
+  trigger:
+    platform: state
+    entity_id: switch.bed_left
+    to: "off"
+  action:
+    - service: timer.finish
+      entity_id: timer.bed_left_warm_sleep
+
+# BED WARMER DEFAULT SLEEP ON TURN ON (RIGHT)
+- alias: Bed right warmer default sleep
+  trigger:
+    platform: state
+    entity_id: switch.bed_right
+    to: "on"
+  action:
+    - service: script.turn_on
+      entity_id: script.start_bed_right_warm_timer
+    - service: notify.telegram
+      data_template:
+        message: "🛏 Bed right warm ON ({{ states.input_number.bed_right_warm_sleep.state | int }}min)"
+
+# TURN OFF BED TIMER ON BED TURN OFF (RIGHT)
+- alias: Bed warmer turn off timer on switch off bed right
+  trigger:
+    platform: state
+    entity_id: switch.bed_right
+    to: "off"
+  action:
+    - service: timer.finish
+      entity_id: timer.bed_right_warm_sleep
+
+# ALARM MORNING SAY WEATHER
+- alias: Alarm trigger
+  trigger:
+    platform: template
+    value_template: "{{ states('sensor.time') == ( states.input_datetime.wake_up_time.attributes.timestamp | int ) | timestamp_custom('%H:%M', False) }}"
+  condition:
+    - condition: state
+      entity_id: binary_sensor.alarm_clock
+      state: "on"
+  action:
+    - service: media_player.volume_set
+      data:
+        entity_id: "media_player.bedroom_speaker"
+        volume_level: 0.3
+    - service: tts.google_translate_say
+      data_template:
+        entity_id: "media_player.bedroom_speaker"
+        message: "The weather for the next 24 hours is {{states ('sensor.dark_sky_hourly_summary') }}"
+
+# BEDROOM HEADLIGHT ON 20 MINUTES BEFORE ALARM CLOCK
+- alias: Turn on headlight 20 minutes before alarm clock
+  trigger:
+    platform: template
+    value_template: "{{ states('sensor.time') == ( states.input_datetime.wake_up_time.attributes.timestamp | int-(20*60) ) | timestamp_custom('%H:%M', False) }}"
+  condition:
+    - condition: state
+      entity_id: binary_sensor.alarm_clock
+      state: "on"
+  action:
+    - service: script.turn_on
+      entity_id: script.headlight_bright_fade_in
+
+# Turn off headlight_bright_fade_in when turn off headlight
+- alias: Turn off headlight_bright_fade_in script
+  trigger:
+    platform: state
+    entity_id: light.head_light
+    to: "off"
+  action:
+    - service: script.turn_off
+      entity_id: script.headlight_bright_fade_in
+
+# If headlight_bright_fade_in is on and move detect on livingroom, turn off head lights
+- alias: Turn off headlight on morning after alarm clock
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_livingroom
+    to: "on"
+  condition:
+    - condition: state
+      entity_id: script.headlight_bright_fade_in
+      state: "on"
+  action:
+    - service: light.turn_off
+      entity_id: light.head_light
+
+# Bed warm timer
+- alias: Bed left warm timer
+  trigger:
+    platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.bed_left_warm_sleep
+  action:
+    - service: notify.telegram
+      data_template:
+        message: "🛏 Bed Left warm OFF"
+    - service: switch.turn_off
+      entity_id: switch.bed_left
+
+# Bed warm timer
+- alias: Bed right warm timer
+  trigger:
+    platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.bed_right_warm_sleep
+  action:
+    - service: notify.telegram
+      data_template:
+        message: "🛏 Bed Right warm OFF"
+    - service: switch.turn_off
+      entity_id: switch.bed_right

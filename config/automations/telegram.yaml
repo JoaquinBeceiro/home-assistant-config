@@ -1,0 +1,44 @@
+########## TELEGRAM COMMANDS ########## 
+# Turn on switches with telegram
+- alias: 'Turn on switch with telegram'
+  trigger:
+    platform: event
+    event_type: telegram_command
+    event_data:
+      command: '/turnon'
+  action:
+    - service: switch.turn_on
+      data_template:
+        entity_id: "switch.{{ trigger.event.data.args[0] }}"
+    - service: notify.telegram
+      data_template:
+        message: 'Turning on {{ trigger.event.data.args[0] }}...'
+        
+# Turn off switches with telegram
+- alias: 'Turn off switch with telegram'
+  trigger:
+    platform: event
+    event_type: telegram_command
+    event_data:
+      command: '/turnoff'
+  action:
+    - service: switch.turn_off
+      data_template:
+        entity_id: "switch.{{ trigger.event.data.args[0] }}"
+    - service: notify.telegram
+      data_template:
+        message: 'Turning off {{ trigger.event.data.args[0] }}...'
+        
+# Turn off ALARM
+- alias: 'Turn off alarm - Telegram'
+  trigger:
+    platform: event
+    event_type: telegram_command
+    event_data:
+      command: '/offalarm'
+  action:
+    - service: alarm_control_panel.alarm_disarm
+      data:
+        entity_id: alarm_control_panel.ha_alarm
+        code: !secret alarm_code
+########## ./TELEGRAM COMMANDS ##########

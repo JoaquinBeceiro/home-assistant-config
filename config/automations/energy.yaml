@@ -1,0 +1,95 @@
+# - NOTIFICATION 
+# - INPUT NUMBER (home, ac, waterheater)
+
+# NOTIFY READINGS AT MIDNIGHT
+- alias: notify_meter_readings_at_midnight
+  trigger:
+    - platform: time
+      at: '23:59:00'
+  action:
+    - service: input_number.set_value
+      data_template:
+          entity_id: input_number.24hour_power_consumption
+          value: "{{ states.sensor.daily_home_energy.state }}"
+    - service: input_number.set_value
+      data_template:
+          entity_id: input_number.heater_24hour_power_consumption
+          value: "{{ states.sensor.daily_heater_energy.state }}"
+    - service: input_number.set_value
+      data_template:
+          entity_id: input_number.waterheater_24hour_power_consumption
+          value: "{{ states.sensor.daily_waterheater_energy.state }}"
+    - service: input_number.set_value
+      data_template:
+          entity_id: input_number.refrigerator_24hour_power_consumption
+          value: "{{ states.sensor.daily_refrigerator_energy.state }}"
+    - service: notify.telegram
+      data_template:
+        title: "⚡ Energy consumption ⚡"
+        message: "----\n
+        *Heater:* {{ states.sensor.heater_today.state }} kWh\n
+        *Water Heater:* {{ states.sensor.waterheater_today.state }} kWh\n
+        *Refrigerator:* {{ states.sensor.refrigerator_today.state }} kWh\n
+        *Total:* {{ states.sensor.daily_home_energy.state }} kWh"
+
+# MONTHLY POWER CONSUMPTION TO TELEGRAM
+- alias: notify_meter_readings_at_midnight_month
+  trigger:
+    - platform: time
+      at: '23:59:00'
+  condition:
+    - condition: state
+      entity_id: binary_sensor.last_day_of_the_month
+      state: 'on'
+  action:
+    - service: notify.telegram
+      data_template:
+        title: "⚡ Energy consumption this month ⚡"
+        message: "----\n
+        *Total month:* {{ states.sensor.monthly_home_energy.state }} kWh"
+
+# POWER CONSUMPTION TO SPREADSHEET
+- alias: Home consumption to Spreadsheet
+  trigger: 
+    platform: time
+    at: '00:01:00'
+  action:
+    service: ifttt.trigger
+    data_template: {"event":"power_consumption", "value1":"Home", "value2": '{{ states.sensor.home_yesterday.state }}' }
+
+- alias: WaterHeater consumption to Spreadsheet
+  trigger: 
+    platform: time
+    at: '00:01:00'
+  action:
+    service: ifttt.trigger
+    data_template: {"event":"power_consumption", "value1":"WaterHeater", "value2": '{{ states.sensor.waterheater_yesterday.state }}' }
+
+- alias: AC consumption to Spreadsheet
+  trigger: 
+    platform: time
+    at: '00:01:00'
+  action:
+    service: ifttt.trigger
+    data_template: {"event":"power_consumption", "value1":"AC", "value2": '{{ states.sensor.heater_yesterday.state }}' }
+
+- alias: Refrigerator consumption to Spreadsheet
+  trigger: 
+    platform: time
+    at: '00:01:00'
+  action:
+    service: ifttt.trigger
+    data_template: {"event":"power_consumption", "value1":"Refrigerator", "value2": '{{ states.sensor.refrigerator_yesterday.state }}' }
+
+# CALL SERVICE FROM IFTTT
+- alias: Call service from IFTTT 
+  trigger:
+    platform: event
+    event_type: ifttt_webhook_received
+    event_data:
+      action: call_service
+  action:
+    service_template: '{{ trigger.event.data.service }}'
+    data_template:
+      entity_id: '{{ trigger.event.data.entity_id }}'
+

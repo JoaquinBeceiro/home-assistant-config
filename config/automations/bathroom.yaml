@@ -1,0 +1,68 @@
+# Turn on WaterHeater LaV at input hour
+- alias: Turn on WaterHeater at x time M-F
+  trigger:
+    platform: template
+    value_template: "{{ states('sensor.time') == (state_attr('input_datetime.turn_on_waterheater_mf', 'timestamp') | int | timestamp_custom('%H:%M', False)) }}"
+  condition: 
+    condition: and
+    conditions:
+      - condition: time
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+  action:
+    service: switch.turn_on
+    entity_id: switch.bathroom_waterheater
+
+# Turn on 'calefon_is_ready' and notify when calefon on
+- alias: Calefon is ready turn on
+  trigger: 
+    platform: state
+    entity_id: switch.bathroom_waterheater
+    to: 'on'
+  action:
+    - service: automation.turn_on
+      entity_id: automation.calefon_is_ready
+    - service: notify.telegram
+      data_template:
+        message: '🔥 Calefon on!'
+               
+# Calefon is ready
+- alias: Calefon is ready
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.waterheater_power
+    below: 1
+    for:
+      minutes: 1
+  condition:
+    - condition: state
+      entity_id: switch.bathroom_waterheater
+      state: 'on'
+  action:
+    - service: automation.turn_off
+      entity_id: automation.calefon_is_ready
+    - service: notify.telegram
+      data_template:
+        message: '🔥 Calefon ready!'
+    - condition: and
+      conditions:
+        - condition: time
+          after: '09:00:00'
+          before: '05:00:00'
+    - service: media_player.volume_set
+      data:
+        entity_id:
+          - media_player.bedroom_speaker
+          - media_player.living_room_speaker
+        volume_level: 0.5
+    - service: tts.google_translate_say
+      data_template:
+        entity_id:
+          - media_player.bedroom_speaker
+          - media_player.living_room_speaker
+        message: "El calefón está listo"
+        language: 'es'
