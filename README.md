@@ -223,3 +223,12 @@ The Water Heater has a power meter. When this power meter reads 0w and the switc
 ##### Automation tasks
 * Play on Google Home with TTS
 * Text notification with Telegram
+
+
+#### [Notify power consumption daily](https://github.com/JoaquinBeceiro/home-assistant-config/blob/41c0525266fa52f0d7c0c3110407299596538b52/config/automations/energy.yaml#L5-L33)
+
+##### Automation trigger
+Every day at **23:59HS**
+
+##### Automation tasks
+* Notify each power consumption reads (Heater, WaterHeater and Refrigerator) and total of the current day
