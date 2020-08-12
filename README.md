@@ -217,18 +217,43 @@
 #### [Notify when the water heater is ready](https://github.com/JoaquinBeceiro/home-assistant-config/blob/c82da612f44ed7adee008f6d876e8560fad946e4/config/automations/bathroom.yaml#L20-L68)
 
 ##### Automation trigger
+
 Every time Water Heater is turned on, this automation turns on.
 The Water Heater has a power meter. When this power meter reads 0w and the switch is on, this automations trigers. This automation only run if time is between **09:00HS** and **05:00HS**.
 
 ##### Automation tasks
-* Play on Google Home with TTS
-* Text notification with Telegram
 
+- Play on Google Home with TTS
+- Text notification with Telegram
 
 #### [Notify power consumption daily](https://github.com/JoaquinBeceiro/home-assistant-config/blob/41c0525266fa52f0d7c0c3110407299596538b52/config/automations/energy.yaml#L5-L33)
 
 ##### Automation trigger
+
 Every day at **23:59HS**
 
 ##### Automation tasks
-* Notify each power consumption reads (Heater, WaterHeater and Refrigerator) and total of the current day
+
+- Notify each power consumption reads (Heater, WaterHeater and Refrigerator) and total of the current day to Telegram
+- [Save power consumptions to Google Spreadsheet](https://github.com/JoaquinBeceiro/home-assistant-config/blob/41c0525266fa52f0d7c0c3110407299596538b52/config/automations/energy.yaml#L51-L82)
+
+#### [Notify power consumption monthly](https://github.com/JoaquinBeceiro/home-assistant-config/blob/cb9735e2e04e43a8f65ec5079d1865c2396d6d62/config/automations/energy.yaml#L35-L49)
+
+##### Automation trigger
+
+Last day of month at **23:59HS**
+
+##### Automation tasks
+
+- Notify month power consuption to Telegram
+
+#### [Notify when front door is open](https://github.com/JoaquinBeceiro/home-assistant-config/blob/cb9735e2e04e43a8f65ec5079d1865c2396d6d62/config/automations/hall.yaml#L1-L17)
+
+##### Automation trigger
+
+Front door sensor **ON**
+
+##### Automation tasks
+
+- Notify front door open to Telegram and Google Home speakers
+- [Notify if front door is open for 2 minutes to Telegram](https://github.com/JoaquinBeceiro/home-assistant-config/blob/cb9735e2e04e43a8f65ec5079d1865c2396d6d62/config/automations/hall.yaml#L32-L49)
