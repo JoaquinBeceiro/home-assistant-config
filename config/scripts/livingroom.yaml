@@ -1,0 +1,25 @@
+presence_livingroom_notifications_when_detected:
+  alias: "Occupancy Detection - livingroom - Notifications"
+  sequence:
+    - condition: state
+      entity_id: binary_sensor.camera_livingroom
+      state: "on"
+    - data:
+        entity_id: camera.living_room
+        filename: /config/tmp/camera_snapshot.jpg
+      service: camera.snapshot
+    - delay: "2"
+    - service: telegram_bot.send_message
+      data_template:
+        chat_id: !secret telegram_bot_chat_ids
+        title: "🚨"
+        message: "Motion detected! - {{ sensor }}"
+    - data:
+        data:
+          photo:
+            - capture: Snapshoot
+              caption: ""
+              file: /config/tmp/camera_snapshot.jpg
+        message: "Motion detected!"
+        title: "Motion detected!"
+      service: notify.telegram

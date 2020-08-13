@@ -1,0 +1,72 @@
+alarm_trigger:
+  alias: "Alarm trigger"
+  sequence:
+    - service: alarm_control_panel.alarm_trigger
+      entity_id: alarm_control_panel.ha_alarm
+    - service: telegram_bot.send_message
+      data_template:
+        chat_id: !secret telegram_bot_chat_ids
+        title: "🚨"
+        message: "Alarm triggered!"
+        inline_keyboard:
+          - "DISARM:/offalarm"
+    - data:
+        entity_id: camera.living_room
+        filename: /config/tmp/camera_snapshot.jpg
+      service: camera.snapshot
+    - data:
+        file: /config/tmp/camera_snapshot.jpg
+      service: telegram_bot.send_photo
+
+disarm_alarm:
+  alias: "Disarm alarm"
+  sequence:
+    - service: media_player.media_stop
+      data:
+        entity_id: media_player.bedroom_speaker
+    - service: media_player.volume_set
+      data:
+        entity_id: "media_player.bedroom_speaker"
+        volume_level: 1
+    - service: tts.google_translate_say
+      data_template:
+        entity_id: "media_player.bedroom_speaker"
+        message: "Alarm disarmed"
+    - service: notify.telegram
+      data_template:
+        title: "🚨"
+        message: "Alarm disarmed"
+
+arm_alarm:
+  alias: "Arm alarm"
+  sequence:
+    - service: media_player.media_stop
+      data:
+        entity_id: media_player.bedroom_speaker
+    - service: media_player.volume_set
+      data:
+        entity_id: "media_player.bedroom_speaker"
+        volume_level: 1
+    - service: tts.google_translate_say
+      data_template:
+        entity_id: "media_player.bedroom_speaker"
+        message: "Alarm armed"
+    - service: homeassistant.turn_on
+      entity_id: automation.police_alarm_on_google_home_motion
+    - service: notify.telegram
+      data_template:
+        title: "🚨"
+        message: "Alarm armed successfully!"
+
+alarm_siren:
+  alias: "Alarm siren"
+  sequence:
+    - service: media_player.volume_set
+      data:
+        entity_id: "media_player.bedroom_speaker"
+        volume_level: 1
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.bedroom_speaker
+        media_content_id: "/local/sounds/police.mp3"
+        media_content_type: "audio/mp4"

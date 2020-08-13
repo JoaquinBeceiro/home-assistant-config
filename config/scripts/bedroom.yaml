@@ -1,0 +1,168 @@
+# GOOD NIGHT ROUTINE
+good_night_routine:
+  alias: "Joaquin good night"
+  sequence:
+    - service: automation.turn_on
+      entity_id: automation.turn_on_livingroom_lights_on_motion_at_night
+    - service: automation.turn_on
+      entity_id: automation.turn_off_livingroom_lights_on_motion_at_night
+    - service: automation.turn_on
+      entity_id: automation.notify_and_turn_on_led_lights_on_motion_sensor
+    - service: homeassistant.turn_off
+      entity_id:
+        - switch.living_room_light
+        - switch.hall_light
+        - switch.kitchen_light
+        - switch.bar_light
+        - switch.bedroom_light
+        - light.desk_lamp
+        - light.tv_light
+        - switch.bathroom_waterheater
+    - service: light.turn_on
+      entity_id: light.head_light
+      data:
+        brightness: 20
+    - service: notify.telegram
+      data_template:
+        message: "😴 Good night!"
+    - service: media_player.volume_set
+      data:
+        entity_id: "media_player.bedroom_speaker"
+        volume_level: 0.2
+    - service: tts.google_translate_say
+      data_template:
+        entity_id: "media_player.bedroom_speaker"
+        message: "Good night Joaquin!"
+        language: "en"
+
+# GOOD MORNING ROUTINE
+good_morning_routine:
+  alias: "Joaquin good morning"
+  sequence:
+    - service: automation.turn_off
+      entity_id: automation.turn_on_livingroom_lights_on_motion_at_night
+    - service: automation.turn_off
+      entity_id: automation.turn_off_livingroom_lights_on_motion_at_night
+    - service: automation.turn_off
+      entity_id: automation.notify_and_turn_on_led_lights_on_motion_sensor
+    - service: light.turn_on
+      entity_id: light.head_light
+      data:
+        brightness: 10
+    - service: light.turn_off
+      entity_id: light.tv_light
+    - service: notify.telegram
+      data_template:
+        message: "🌞 Good morning!"
+    - service: media_player.volume_set
+      data:
+        entity_id: "media_player.bedroom_speaker"
+        volume_level: 0.2
+    - service: tts.google_translate_say
+      data_template:
+        entity_id: "media_player.bedroom_speaker"
+        message: "Good morning Joaquin!"
+        language: "en"
+
+# BED WARM TIMER
+start_bed_left_warm_timer:
+  alias: Start Bed Left Warm Timer
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.bed_left
+    - service: timer.start
+      data_template:
+        entity_id: timer.bed_left_warm_sleep
+        duration: "{{ states.input_number.bed_left_warm_sleep.state | multiply(60) | int }}"
+
+start_bed_right_warm_timer:
+  alias: Start Bed Right Warm Timer
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.bed_right
+    - service: timer.start
+      data_template:
+        entity_id: timer.bed_right_warm_sleep
+        duration: "{{ states.input_number.bed_right_warm_sleep.state | multiply(60) | int }}"
+
+# HEAD LIGHT FADE IN
+set_headlight_bright:
+  alias: Set HeadLight bright
+  sequence:
+    - alias: Dim Head Light
+      service: light.turn_on
+      entity_id: light.head_light
+      data_template:
+        brightness: "{{ percentage | int }}"
+
+headlight_bright_fade_in:
+  alias: Head Light Fade In
+  sequence:
+    - service: script.turn_on
+      entity_id: script.set_headlight_bright
+      data:
+        variables:
+          percentage: "5"
+    - delay:
+        minutes: 5
+    - service: script.turn_on
+      entity_id: script.set_headlight_bright
+      data:
+        variables:
+          percentage: "10"
+    - delay:
+        minutes: 5
+    - service: script.turn_on
+      entity_id: script.set_headlight_bright
+      data:
+        variables:
+          percentage: "20"
+    - delay:
+        minutes: 5
+    - service: script.turn_on
+      entity_id: script.set_headlight_bright
+      data:
+        variables:
+          percentage: "35"
+    - delay:
+        minutes: 5
+    - service: script.turn_on
+      entity_id: script.set_headlight_bright
+      data:
+        variables:
+          percentage: "50"
+    - delay:
+        minutes: 5
+    - service: script.turn_on
+      entity_id: script.set_headlight_bright
+      data:
+        variables:
+          percentage: "120"
+    - delay:
+        minutes: 5
+    - service: script.turn_on
+      entity_id: script.set_headlight_bright
+      data:
+        variables:
+          percentage: "170"
+    - delay:
+        minutes: 5
+    - service: script.turn_on
+      entity_id: script.set_headlight_bright
+      data:
+        variables:
+          percentage: "200"
+    - delay:
+        minutes: 5
+    - service: script.turn_on
+      entity_id: script.set_headlight_bright
+      data:
+        variables:
+          percentage: "230"
+    - delay:
+        minutes: 120
+    - service: script.turn_on
+      entity_id: script.set_headlight_bright
+      data:
+        variables:
+          percentage: "255"
