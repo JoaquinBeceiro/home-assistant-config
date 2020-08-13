@@ -1,5 +1,12 @@
 # HomeAssistant personal config
 
+## Table of Contents
+
+- [Screenshots](#screenshots)
+- [Devices](#devices)
+- [Automations](#automations)
+- [Authors](#authors)
+
 ## Screenshots
 
 ### Dashboard - Home
@@ -267,3 +274,10 @@ Front door sensor **ON**
 
 - Notify front door open to Telegram and Google Home speakers
 - [Notify if front door is open for 2 minutes to Telegram](https://github.com/JoaquinBeceiro/home-assistant-config/blob/cb9735e2e04e43a8f65ec5079d1865c2396d6d62/config/automations/hall.yaml#L32-L49)
+
+
+## Authors
+
+ **Joaquin Beceiro** 
+- [GitHub](https://github.com/JoaquinBeceiro) 
+- [Web](https://JoaquinBeceiro.com.uy)
