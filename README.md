@@ -207,6 +207,16 @@
         <p>Camera and movement detection</p>
       </td>
     </tr>
+    <tr>
+      <td>1</td>
+      <td>
+        <img src="images/devices/sonoff-4ch.jpg" alt="Sonoff 4ch" width="200" />
+        <h3>Sonoff 4 channel</h3>
+      </td>
+      <td>
+        <p>4 channel switch</p>
+      </td>
+    </tr>
   <tbody>
 </table>
 
