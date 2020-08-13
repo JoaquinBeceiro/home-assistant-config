@@ -13,6 +13,14 @@
 
 ![Dashboard home 1](images/screenshots/dashboard-home1.png)
 
+### Dashboard - Personal
+
+![Dashboard personal](images/screenshots/personal-dashboard.png)
+
+- Device tracker
+- Phone status (location, battery, battery state, geocode and connected WiFi network)
+- Google Calendar schedule
+
 ## Devices
 
 <table align="center" border="0" width="100%">
@@ -275,9 +283,9 @@ Front door sensor **ON**
 - Notify front door open to Telegram and Google Home speakers
 - [Notify if front door is open for 2 minutes to Telegram](https://github.com/JoaquinBeceiro/home-assistant-config/blob/cb9735e2e04e43a8f65ec5079d1865c2396d6d62/config/automations/hall.yaml#L32-L49)
 
-
 ## Authors
 
- **Joaquin Beceiro** 
-- [GitHub](https://github.com/JoaquinBeceiro) 
+**Joaquin Beceiro**
+
+- [GitHub](https://github.com/JoaquinBeceiro)
 - [Web](https://JoaquinBeceiro.com.uy)
