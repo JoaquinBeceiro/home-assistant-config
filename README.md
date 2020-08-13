@@ -20,6 +20,7 @@
 - Device tracker
 - Phone status (location, battery, battery state, geocode and connected WiFi network)
 - Google Calendar schedule
+- WIP: Shopping list
 
 ## Devices
 
