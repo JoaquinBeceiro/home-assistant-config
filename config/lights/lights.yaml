@@ -1,0 +1,13 @@
+- platform: flux_led
+  devices:
+    !secret light_headlight_ip:
+      name: Head light
+      mode: "w"
+    !secret light_tvlight_ip:
+      name: TV light
+      mode: "rgbw"
+- platform: xiaomi_miio
+  name: Desk Lamp
+  host: !secret xiaomi_lamp_ip
+  token: !secret xiaomi_app_token
+  model: philips.light.bulb
