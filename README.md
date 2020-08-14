@@ -1,10 +1,27 @@
 # HomeAssistant personal config
 
-## Table of Contents
 
+![Stars](https://img.shields.io/github/stars/JoaquinBeceiro/Home-Assistant-Config.svg?style=plasticr)
+![Last Commit](https://img.shields.io/github/last-commit/JoaquinBeceiro/Home-Assistant-Config.svg?style=plasticr)
+
+
+This is a project focused on sharing ideas and solutions for the use of[ Home Assistant](https://www.home-assistant.io/) and home automation in general.
+I am currently running [Docker](https://www.docker.com/) on the Mini Intel Nuc Celeron J3455 8gb 1tb.
+I will update my configuration files regularly. If you like what you see, feel fre to :star: my repo!
+
+**Objectives**
+- Energy saving
+- Cheap home automation
+- Simple user interface
+- Daily use automations to simplify the routine
+
+
+## Table of Contents
 - [Screenshots](#screenshots)
+- [Software](#software)
 - [Devices](#devices)
 - [Automations](#automations)
+- [ToDo list](#todo-list)
 - [Authors](#authors)
 
 ## Screenshots
@@ -21,6 +38,17 @@
 - Phone status (location, battery, battery state, geocode and connected WiFi network)
 - Google Calendar schedule
 - WIP: Shopping list
+
+
+## Software
+
+- Docker server with [Portainer](https://www.portainer.io/)
+- [Mosquitto](https://mosquitto.org/) MQTT server to communicate with devices
+- [MariaDB](https://mariadb.org/) database to save all information
+- [VSCode](https://code.visualstudio.com/) server to code in browser
+- [ADB](https://developer.android.com/studio/command-line/adb/) server to communicate with AndroidTV devices
+- [HomeKit Bridge](https://www.home-assistant.io/integrations/homekit/) to make HomeAssistant entities available on Apple HomeKit
+
 
 ## Devices
 
@@ -233,6 +261,16 @@
         <p>4 channel switch</p>
       </td>
     </tr>
+    <tr>
+      <td>1</td>
+      <td>
+        <img src="images/devices/amazon-fire-7.jpg" alt="Sonoff 4ch" width="200" />
+        <h3>Tablet Fire 7</h3>
+      </td>
+      <td>
+        <p>Dashboard mounted on wall</p>
+      </td>
+    </tr>
   <tbody>
 </table>
 
@@ -283,6 +321,10 @@ Front door sensor **ON**
 
 - Notify front door open to Telegram and Google Home speakers
 - [Notify if front door is open for 2 minutes to Telegram](https://github.com/JoaquinBeceiro/home-assistant-config/blob/cb9735e2e04e43a8f65ec5079d1865c2396d6d62/config/automations/hall.yaml#L32-L49)
+
+## ToDo list
+
+- Dashboard on Amazon Fire 7 tablet with [Fully Kiosk Browser](https://www.fully-kiosk.com/)
 
 ## Authors
 
