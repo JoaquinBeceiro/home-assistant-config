@@ -39,6 +39,16 @@ I will update my configuration files regularly. If you like what you see, feel f
 - Google Calendar schedule
 - WIP: Shopping list
 
+### Dashboard - Power consumption
+
+![Dashboard Power Consumption](images/screenshots/powerconsumption-dashboard.png)
+
+- Online power consumptions (Home, AC, WaterHeater and Refrigerator)
+- Home power consumption (today, yesterday, week and month)
+- AC power consumption (today and yesterday)
+- WaterHeater power consumption (today and yesterday)
+- Refrigerator power consumption (today and yesterday)
+- Last 24h chart of power cnsumptions with max/min values
 
 ## Software
 
