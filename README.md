@@ -5,8 +5,8 @@
 </h2>
 
 <p align="center">
-  This is a project focused on sharing ideas and solutions for the use of[ Home Assistant](https://www.home-assistant.io/) and home automation in general.
-  I am currently running [Docker](https://www.docker.com/) on the Mini Intel Nuc Celeron J3455 8gb 1tb.
+  This is a project focused on sharing ideas and solutions for the use of <a href="https://www.home-assistant.io/">Home Assistant</a> and home automation in general.
+  I am currently running <a href="https://www.docker.com/">Docker</a> on the Mini Intel Nuc Celeron J3455 8gb 1tb.
 </p>
 <p align="center">
   I will update my configuration files regularly. If you like what you see, feel fre to :star: my repo!
