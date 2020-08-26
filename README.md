@@ -16,10 +16,14 @@
   <img alt="Stars" src="https://img.shields.io/github/stars/JoaquinBeceiro/Home-Assistant-Config.svg?style=plasticr"/>
   <img alt="Last Commit" src="https://img.shields.io/github/last-commit/JoaquinBeceiro/Home-Assistant-Config.svg?style=plasticr"/>
   <img alt="Commit activity" src="https://img.shields.io/github/commit-activity/m/JoaquinBeceiro/home-assistant-config"/>
+  <img alt="Maintenance" src="https://img.shields.io/maintenance/yes/2020"/>
 </p>
 
 <p align="center">
-  <img alt="HA Version" src="https://img.shields.io/badge/HA--Version-0.112.1-green"/>
+  <img alt="HA Version" src="https://img.shields.io/badge/HA--Version-0.112.1-9cf"/>
+  <img alt="Mosquitto Version" src="https://img.shields.io/badge/Mosquitto--Version-1.6.9-9cf"/>
+  <img alt="VSCode Version" src="https://img.shields.io/badge/VSCode--Version-3.0.2-9cf"/>
+  <img alt="MariaDB Version" src="https://img.shields.io/badge/MariaDB--Version-10.4-9cf"/>
 </p>
 
 **Objectives**
