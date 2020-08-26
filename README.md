@@ -1,22 +1,36 @@
-# HomeAssistant personal config
+<h1 align="center">HomeAssistant personal config</h1>
 
+<h2 align="center">
+  From :uruguay: to :earth_americas: !
+</h2>
 
-![Stars](https://img.shields.io/github/stars/JoaquinBeceiro/Home-Assistant-Config.svg?style=plasticr)
-![Last Commit](https://img.shields.io/github/last-commit/JoaquinBeceiro/Home-Assistant-Config.svg?style=plasticr)
+<p align="center">
+  This is a project focused on sharing ideas and solutions for the use of[ Home Assistant](https://www.home-assistant.io/) and home automation in general.
+  I am currently running [Docker](https://www.docker.com/) on the Mini Intel Nuc Celeron J3455 8gb 1tb.
+</p>
+<p align="center">
+  I will update my configuration files regularly. If you like what you see, feel fre to :star: my repo!
+</p>
 
+<p align="center">
+  <img alt="Stars" src="https://img.shields.io/github/stars/JoaquinBeceiro/Home-Assistant-Config.svg?style=plasticr"/>
+  <img alt="Last Commit" src="https://img.shields.io/github/last-commit/JoaquinBeceiro/Home-Assistant-Config.svg?style=plasticr"/>
+  <img alt="Commit activity" src="https://img.shields.io/github/commit-activity/m/JoaquinBeceiro/home-assistant-config"/>
+</p>
 
-This is a project focused on sharing ideas and solutions for the use of[ Home Assistant](https://www.home-assistant.io/) and home automation in general.
-I am currently running [Docker](https://www.docker.com/) on the Mini Intel Nuc Celeron J3455 8gb 1tb.
-I will update my configuration files regularly. If you like what you see, feel fre to :star: my repo!
+<p align="center">
+  <img alt="HA Version" src="https://img.shields.io/badge/HA--Version-0.112.1-green"/>
+</p>
 
 **Objectives**
+
 - Energy saving
 - Cheap home automation
 - Simple user interface
 - Daily use automations to simplify the routine
 
-
 ## Table of Contents
+
 - [Screenshots](#screenshots)
 - [Software](#software)
 - [Devices](#devices)
@@ -58,7 +72,6 @@ I will update my configuration files regularly. If you like what you see, feel f
 - [VSCode](https://code.visualstudio.com/) server to code in browser
 - [ADB](https://developer.android.com/studio/command-line/adb/) server to communicate with AndroidTV devices
 - [HomeKit Bridge](https://www.home-assistant.io/integrations/homekit/) to make HomeAssistant entities available on Apple HomeKit
-
 
 ## Devices
 
@@ -281,6 +294,16 @@ I will update my configuration files regularly. If you like what you see, feel f
         <p>Dashboard mounted on wall</p>
       </td>
     </tr>
+    <tr>
+      <td>1</td>
+      <td>
+        <img src="images/devices/aqara-cube.jpeg" alt="Sonoff 4ch" width="200" />
+        <h3>Xiaomi Aqara cube</h3>
+      </td>
+      <td>
+        <p>Remote controller</p>
+      </td>
+    </tr>
   <tbody>
 </table>
 
@@ -335,6 +358,8 @@ Front door sensor **ON**
 ## ToDo list
 
 - Dashboard on Amazon Fire 7 tablet with [Fully Kiosk Browser](https://www.fully-kiosk.com/)
+- Improve ADB server to control TVs (open APPs, volume, turn on/off)
+- Aqara cube automations
 
 ## Authors
 
