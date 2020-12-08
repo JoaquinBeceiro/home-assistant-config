@@ -364,6 +364,7 @@ Front door sensor **ON**
 - Dashboard on Amazon Fire 7 tablet with [Fully Kiosk Browser](https://www.fully-kiosk.com/)
 - Improve ADB server to control TVs (open APPs, volume, turn on/off)
 - Aqara cube automations
+- Hardware Topology
 
 ## Authors
 
