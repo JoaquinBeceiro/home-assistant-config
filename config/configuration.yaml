@@ -153,7 +153,7 @@ webhook:
 # ZIGBEE2MQTT
 zigbee2mqtt_networkmap:
 
-# SHOPPING LIST 
+# SHOPPING LIST
 shopping_list:
 
 # MEDIA PLAYER
@@ -161,7 +161,7 @@ media_player:
   - platform: androidtv
     name: MiBox Livingroom
     device_class: androidtv
-    host: 192.168.31.60
+    host: !secret livingroom_tv_ip
     adb_server_ip: 127.0.0.1
     adbkey: "/config/.android/adbkey"
     adb_server_port: 5037
