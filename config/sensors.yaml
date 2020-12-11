@@ -316,7 +316,19 @@
         unit_of_measurement: '%'
         value_template: '{{ states("sensor.dark_sky_humidity") }}'
         icon_template: 'mdi:water-percent'
-        
+      last_day_of_month:
+        friendly_name: Last day of current month
+        value_template:  >-
+          {% if now().month in [1,3,5,7,8,10,12] %}
+            31
+          {% elif now().month in [4,6,9,11] %}
+            30
+          {% elif now().month == 2 and ((now().year-2000) % 4 > 0) %}
+            28
+          {% elif now().month == 2 and ((now().year-2000) % 4 == 0) %}
+            29
+          {% endif %}
+        icon_template: "mdi:calendar"
           
   - platform: darksky
     api_key: !secret darksky_apikey
