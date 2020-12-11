@@ -31,7 +31,8 @@
         *Water Heater:* {{ states.sensor.waterheater_today.state }} kWh\n
         *Refrigerator:* {{ states.sensor.refrigerator_today.state }} kWh\n
         *Total:* {{ states.sensor.daily_home_energy.state }} kWh\n\n
-        *Total month:* {{ states.sensor.monthly_home_energy.state }} kWh"
+        *Total month:* {{ states.sensor.monthly_home_energy.state }} kWh\n
+        *Estimation:* {{ states.sensor.monthly_home_energy.state | int / now().month * states('sensor.last_day_of_month') | int }} kWh"
 
 # MONTHLY POWER CONSUMPTION TO TELEGRAM
 - alias: notify_meter_readings_at_midnight_month
@@ -89,7 +90,7 @@
     event_data:
       action: call_service
   action:
-    service_template: '{{ trigger.event.data.service }}'
+    service: '{{ trigger.event.data.service }}'
     data_template:
       entity_id: '{{ trigger.event.data.entity_id }}'
 
