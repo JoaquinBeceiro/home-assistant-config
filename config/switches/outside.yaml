@@ -1,0 +1,8 @@
+  - platform: mqtt
+    name: "Outside light"
+    command_topic: "cmnd/outside-light/power"
+    state_topic: "stat/outside-light/POWER"
+    payload_on: "ON"
+    payload_off: "OFF"
+    icon: mdi:ceiling-light
+    retain: false
