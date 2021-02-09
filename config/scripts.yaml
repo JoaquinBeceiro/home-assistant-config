@@ -95,7 +95,7 @@ alarm_siren:
     - service: media_player.play_media
       data:
         entity_id: media_player.bedroom_speaker
-        media_content_id: !secret alarm_sound
+        media_content_id: "http://sonidosmp3gratis.com/sounds/POLICE.mp3"
         media_content_type: "audio/mp4"
 
 # BED WARM TIMER
@@ -197,7 +197,7 @@ tv_only_audio:
   sequence:
     - service: remote.send_command
       data:
-        entity_id: remote.broadlink
+        entity_id: remote.rm_mini_remote
         device: television
         command: 
           - tv_config
