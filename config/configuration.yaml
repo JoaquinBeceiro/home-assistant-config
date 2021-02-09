@@ -1,6 +1,6 @@
 homeassistant:
   name: Home
-  whitelist_external_dirs:
+  allowlist_external_dirs:
     - /tmp
   customize: !include customize.yaml
 
@@ -56,7 +56,7 @@ weather:
 
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
 device_tracker:
-  - platform: bluetooth_tracker
+  # - platform: bluetooth_tracker
   - platform: bluetooth_le_tracker
   - platform: xiaomi
     host: !secret router_ip
@@ -84,8 +84,11 @@ tts:
 
 camera:
   - platform: ffmpeg
-    name: Living room
+    name: Living room 3
     input: !secret yi_cam_input
+  - platform: generic
+    name: Tablet
+    still_image_url: !secret tablet_still_image_url
 
 # INPUTS
 input_datetime:
@@ -156,17 +159,6 @@ zigbee2mqtt_networkmap:
 # SHOPPING LIST
 shopping_list:
 
-# MEDIA PLAYER
-media_player:
-  - platform: androidtv
-    name: MiBox Livingroom
-    device_class: androidtv
-    host: !secret livingroom_tv_ip
-    adb_server_ip: 127.0.0.1
-    adbkey: "/config/.android/adbkey"
-    adb_server_port: 5037
-    get_sources: true
-
 # GOOGLE ASSISTANT
 google_assistant:
   project_id: !secret google_assistant_project_id
@@ -228,6 +220,16 @@ utility_meter:
 google:
   client_id: !secret google_client_id
   client_secret: !secret google_client_secret
+
+vacuum:
+  platform: miio2
+  name: Living room
+  host: !secret vacuum_host
+  token: !secret vacuum_token
+
+rest_command:
+  kiosk_command:
+    url: !secret rest_url_kiosk_command
 
 ### INCLUDES ###
 
