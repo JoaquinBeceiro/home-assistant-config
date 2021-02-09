@@ -36,6 +36,7 @@
 ## Table of Contents
 
 - [Screenshots](#screenshots)
+- [Photos](#Photos)
 - [Software](#software)
 - [Devices](#devices)
 - [Automations](#automations)
@@ -55,16 +56,11 @@
 
 - Device tracker
 - Phone status (location, battery, battery state, geocode and connected WiFi network)
-- Google Calendar schedule
 - WIP: Shopping list
 
 ### Dashboard - Power consumption
 
 ![Dashboard Power Consumption](images/screenshots/powerconsumption-dashboard.png)
-
-### Dashboard - Tablet
-
-![Dashboard Tablet](images/screenshots/tablet-dashboard.png)
 
 - Online power consumptions (Home, AC, WaterHeater and Refrigerator)
 - Home power consumption (today, yesterday, week and month)
@@ -72,6 +68,22 @@
 - WaterHeater power consumption (today and yesterday)
 - Refrigerator power consumption (today and yesterday)
 - Last 24h chart of power cnsumptions with max/min values
+
+### Dashboard - Tablet
+
+![Dashboard Tablet](images/screenshots/tablet-dashboard.png)
+
+## Photos
+
+### Tablet
+
+![Dashboard Tablet](images/photos/tablet-picture.jpeg)
+
+- Tablet with [Fully Kiosk Browser](https://www.fully-kiosk.com/) running HomeAssistant
+- Using tablet camera as security camera
+- Motion sensor with tablet camera
+- Automatic display on/off with motion sensor
+- WIP: Tablet wall mount
 
 ## Software
 
