@@ -1,4 +1,3 @@
-# Notify and turn on/off led lights on motion sensor
 - alias: Notify and turn on led lights on motion sensor
   trigger:
     - platform: state

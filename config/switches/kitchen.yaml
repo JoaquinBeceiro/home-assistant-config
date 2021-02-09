@@ -1,26 +1,26 @@
-- platform: mqtt
-  name: "Refrigerator"
-  command_topic: "cmnd/refrigerator/power"
-  state_topic: "stat/refrigerator/POWER"
-  payload_on: "ON"
-  payload_off: "OFF"
-  icon: mdi:shower
-  retain: false
+  - platform: mqtt
+    name: "Refrigerator"
+    command_topic: "cmnd/refrigerator/power"
+    state_topic: "stat/refrigerator/POWER"
+    payload_on: "ON"
+    payload_off: "OFF"
+    icon: mdi:shower
+    retain: false
 
-- platform: mqtt
-  name: "Kitchen light"
-  command_topic: "cmnd/kitchen-lights/power1"
-  state_topic: "stat/kitchen-lights/POWER1"
-  payload_on: "ON"
-  payload_off: "OFF"
-  icon: mdi:lightbulb
-  retain: false
-
-- platform: mqtt
-  name: "Bar light"
-  command_topic: "cmnd/kitchen-lights/power2"
-  state_topic: "stat/kitchen-lights/POWER2"
-  payload_on: "ON"
-  payload_off: "OFF"
-  icon: mdi:lightbulb
-  retain: false
+  - platform: mqtt
+    name: "Kitchen light"
+    command_topic: "cmnd/lights1/power1"
+    state_topic: "stat/lights1/POWER1"
+    payload_on: "ON"
+    payload_off: "OFF"
+    icon: mdi:ceiling-light
+    retain: false
+    
+  - platform: mqtt
+    name: "Kitchen led"
+    command_topic: "cmnd/kitchen-led/power"
+    state_topic: "stat/kitchen-led/POWER"
+    payload_on: "ON"
+    payload_off: "OFF"
+    icon: mdi:lightbulb
+    retain: false

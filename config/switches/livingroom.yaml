@@ -1,43 +1,36 @@
-- platform: mqtt
-  name: "Living room light"
-  command_topic: "cmnd/livingroom-light/power"
-  state_topic: "stat/livingroom-light/POWER"
-  payload_on: "ON"
-  payload_off: "OFF"
-  icon: mdi:lightbulb
-  retain: false
+  - platform: mqtt
+    name: "Living room light"
+    command_topic: "cmnd/lights1/power2"
+    state_topic: "stat/lights1/POWER2"
+    payload_on: "ON"
+    payload_off: "OFF"
+    icon: mdi:ceiling-light
+    retain: false
+    
+  - platform: mqtt
+    name: "Air conditioner power"
+    command_topic: "cmnd/heater/power"
+    state_topic: "stat/heater/POWER"
+    payload_on: "ON"
+    payload_off: "OFF"
+    icon: mdi:air-conditioner
+    retain: false
 
-- platform: mqtt
-  name: "Air conditioner power"
-  command_topic: "cmnd/heater/power"
-  state_topic: "stat/heater/POWER"
-  payload_on: "ON"
-  payload_off: "OFF"
-  icon: mdi:air-conditioner
-  retain: false
-
-- platform: broadlink
-  host: !secret rm_mini_ip
-  mac: !secret rm_mini_mac
-  type: rm_mini
-  switches:
-    tv:
-      friendly_name: "TV"
-      command_on: "JgBQAAABKJEVERMSEjgSEhMSEhMSExISEzcTNxMREzcSNxM3EzcSNxMSEhMSEhM3EhMSExISExISOBM2EzcTERM3EjcUNhM2FAAFLwABKEkTAA0FAAAAAAAAAAA="
-      command_off: "JgBQAAABKJEVERMSEjgSEhMSEhMSExISEzcTNxMREzcSNxM3EzcSNxMSEhMSEhM3EhMSExISExISOBM2EzcTERM3EjcUNhM2FAAFLwABKEkTAA0FAAAAAAAAAAA="
-    tv_volume_up:
-      friendly_name: "Volume UP"
-      command_on: "JgBQAFscERsRDQ8OLSoRDQ8OHhwQDg8OEA0QDRAODw4eHBANEA4PDg8ACrtYHRAcEA0QDiwrEQwQDh4cEA0QDRAODw4PDhANHh0QDRANEA0QAA0FAAAAAAAAAAA="
-    tv_config:
-      friendly_name: "Config"
-      command_on: "JgBYAAABJ5MTExETEjcTEhMSEhITEhQREzYTNxITEzUUNxM2EzcSNxQ2EjgSEhITExISExM2EhMTEhISFDYTNxM2EzcSEhQ2EwAFLgABJ0oTAAxeAAEoSRIADQU="
-    tv_enter:
-      friendly_name: "Enter"
-      command_on: "JgBYAAABJ5MTEhITEjcTEhITEhMSEhQRFDYTNhITFDYUNRQ2FDUTNRYRFDUSExI3FDYSExI3FBEUNBQSFDUTExQQEzcUERI3FAAFLgABKUgVAAxdAAEnShMADQU="
-    tv_volume_down:
-      friendly_name: "Volume down"
-      command_on: "JgBQAFceDx0PDg8ODh4dDw4PDhAcHg4PDg8OEA0QDg8ODx0eDRAODxwACstXHg4eDg8ODw4eHQ8OEA0QHB4ODw4QDRANEA4PDg8dHg4PDg8dAA0FAAAAAAAAAAA="
-    mist:
-      friendly_name: "Mist"
-      command_on: "JgBQAAABMZQTEhMTExMSFBITExMSFBITEzgSOBI4EzcTOBI4EzcTOBITExMTExIUEhMTExMTEhMTOBI4EzcTNxM4EjgTNxM4EgAFKQABMEkSAA0FAAAAAAAAAAA="
-      command_off: "JgBQAAABMZQTEhMTExMSFBITExMSFBITEzgSOBI4EzcTOBI4EzcTOBITExMTExIUEhMTExMTEhMTOBI4EzcTNxM4EjgTNxM4EgAFKQABMEkSAA0FAAAAAAAAAAA="
+  - platform: broadlink
+    mac: !secret rm_mini_mac
+    switches:
+      - name: "TV"
+        command_on: "JgBQAAABKJEVERMSEjgSEhMSEhMSExISEzcTNxMREzcSNxM3EzcSNxMSEhMSEhM3EhMSExISExISOBM2EzcTERM3EjcUNhM2FAAFLwABKEkTAA0FAAAAAAAAAAA="
+        command_off: "JgBQAAABKJEVERMSEjgSEhMSEhMSExISEzcTNxMREzcSNxM3EzcSNxMSEhMSEhM3EhMSExISExISOBM2EzcTERM3EjcUNhM2FAAFLwABKEkTAA0FAAAAAAAAAAA="
+      - name: "Volume UP"
+        command_on: "JgBQAFscERsRDQ8OLSoRDQ8OHhwQDg8OEA0QDRAODw4eHBANEA4PDg8ACrtYHRAcEA0QDiwrEQwQDh4cEA0QDRAODw4PDhANHh0QDRANEA0QAA0FAAAAAAAAAAA="
+      - name: "Config"
+        command_on: "JgBYAAABJ5MTExETEjcTEhMSEhITEhQREzYTNxITEzUUNxM2EzcSNxQ2EjgSEhITExISExM2EhMTEhISFDYTNxM2EzcSEhQ2EwAFLgABJ0oTAAxeAAEoSRIADQU="
+      - name: "Enter"
+        command_on: "JgBYAAABJ5MTEhITEjcTEhITEhMSEhQRFDYTNhITFDYUNRQ2FDUTNRYRFDUSExI3FDYSExI3FBEUNBQSFDUTExQQEzcUERI3FAAFLgABKUgVAAxdAAEnShMADQU="
+      - name: "Volume down"
+        command_on: "JgBQAFceDx0PDg8ODh4dDw4PDhAcHg4PDg8OEA0QDg8ODx0eDRAODxwACstXHg4eDg8ODw4eHQ8OEA0QHB4ODw4QDRANEA4PDg8dHg4PDg8dAA0FAAAAAAAAAAA="
+      - name: "Mist"
+        command_on: "JgBQAAABMZQTEhMTExMSFBITExMSFBITEzgSOBI4EzcTOBI4EzcTOBITExMTExIUEhMTExMTEhMTOBI4EzcTNxM4EjgTNxM4EgAFKQABMEkSAA0FAAAAAAAAAAA="
+        command_off: "JgBQAAABMZQTEhMTExMSFBITExMSFBITEzgSOBI4EzcTOBI4EzcTOBITExMTExIUEhMTExMTEhMTOBI4EzcTNxM4EjgTNxM4EgAFKQABMEkSAA0FAAAAAAAAAAA="
+        

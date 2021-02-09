@@ -1,17 +1,17 @@
-- platform: mqtt
-  name: "Hall light"
-  command_topic: "cmnd/hall-light/power"
-  state_topic: "stat/hall-light/POWER"
-  payload_on: "ON"
-  payload_off: "OFF"
-  icon: mdi:lightbulb
-  retain: false
-
-- platform: mqtt
-  name: "Door"
-  command_topic: "cmnd/door/power"
-  state_topic: "stat/door/POWER"
-  payload_on: "ON"
-  payload_off: "OFF"
-  icon: mdi:door
-  retain: false
+  - platform: mqtt
+    name: "Hall light"
+    command_topic: "cmnd/hall-light/power"
+    state_topic: "stat/hall-light/POWER"
+    payload_on: "ON"
+    payload_off: "OFF"
+    icon: mdi:ceiling-light
+    retain: false
+    
+  - platform: mqtt
+    name: "Door"
+    command_topic: "cmnd/door/power"
+    state_topic: "stat/door/POWER"
+    payload_on: "ON"
+    payload_off: "OFF"
+    icon: mdi:door
+    retain: false
