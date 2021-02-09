@@ -15,6 +15,20 @@
     - service: notify.telegram
       data_template:
         message: '🚪 Front door open!'
+    - service: switch.turn_on
+      entity_id: switch.hall_light
+
+- alias: Front door close
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.xiaomi_door_sensor
+      from: 'on'
+      to: 'off'
+  action:
+    - delay: "00:00:30"
+    - service: switch.turn_off
+      entity_id: switch.hall_light
+
 
 # Turn on light when detect motion on hall
 - alias: Turn on/off hall lights on motion
@@ -48,4 +62,13 @@
       data_template:
         message: '🚪 Front door open for 2 minutes'
 
-        
+
+- alias: Tag door is scanned
+  trigger:
+    platform: tag
+    tag_id: !secret nfctag_door
+  condition: []
+  action:
+    service: switch.turn_on
+    entity_id: switch.door
+  mode: single
