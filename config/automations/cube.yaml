@@ -1,0 +1,60 @@
+- alias: Open door - shake
+  trigger:
+    platform: mqtt
+    topic: !secret zigbee2mqtt_cube
+  condition:
+    - condition: template
+      value_template: "{{ 'shake' == trigger.payload_json.action }}"
+  action:
+    service: switch.turn_on
+    entity_id: switch.door
+
+- alias: Bright desk lamp & tv light min - rotate left
+  trigger:
+    platform: mqtt
+    topic: !secret zigbee2mqtt_cube
+  condition:
+    - condition: template
+      value_template: "{{ 'rotate_left' == trigger.payload_json.action }}"
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.desk_lamp
+        brightness: 1
+    - service: light.turn_on
+      data:
+        entity_id: light.tv_light
+        brightness: 10
+        white_value: 250
+
+- alias: Bright desk lamp & tv light max - rotate right
+  trigger:
+    platform: mqtt
+    topic: !secret zigbee2mqtt_cube
+  condition:
+    - condition: template
+      value_template: "{{ 'rotate_right' == trigger.payload_json.action }}"
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.desk_lamp
+        brightness: 255
+    - service: light.turn_on
+      data:
+        entity_id: light.tv_light
+        brightness: 255
+
+- alias: Toggle desk lamp & tv light - tap
+  trigger:
+    platform: mqtt
+    topic: !secret zigbee2mqtt_cube
+  condition:
+    - condition: template
+      value_template: "{{ 'tap' == trigger.payload_json.action }}"
+  action:
+    - service: light.toggle
+      data:
+        entity_id: light.desk_lamp
+    - service: light.toggle
+      data:
+        entity_id: light.tv_light
