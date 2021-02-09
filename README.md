@@ -62,6 +62,10 @@
 
 ![Dashboard Power Consumption](images/screenshots/powerconsumption-dashboard.png)
 
+### Dashboard - Tablet
+
+![Dashboard Tablet](images/screenshots/tablet-dashboard.png)
+
 - Online power consumptions (Home, AC, WaterHeater and Refrigerator)
 - Home power consumption (today, yesterday, week and month)
 - AC power consumption (today and yesterday)
