@@ -1,0 +1,18 @@
+# ON/OFF Kitchen led light
+- alias: Power ON Kitchen led light
+  trigger:
+    platform: state
+    entity_id: switch.kitchen_light
+    to: 'on'
+  action:
+    service: switch.turn_on
+    entity_id: switch.kitchen_led
+
+- alias: Power OFF Kitchen led light
+  trigger:
+    platform: state
+    entity_id: switch.kitchen_light
+    to: 'off'
+  action:
+    service: switch.turn_off
+    entity_id: switch.kitchen_led
