@@ -1,0 +1,105 @@
+  # Zigbee2MQTT
+  - platform: "mqtt"
+    name: Xiaomi Motion Sensor
+    state_topic: !secret zigbee2mqtt_motion1
+    availability_topic: "zigbee2mqtt/bridge/state"
+    payload_on: true
+    payload_off: false
+    value_template: "{{ value_json.occupancy }}"
+    device_class: "motion"
+
+  - platform: "mqtt"
+    name: Xiaomi Door Sensor
+    state_topic: !secret zigbee2mqtt_door1
+    availability_topic: "zigbee2mqtt/bridge/state"
+    payload_on: false
+    payload_off: true
+    value_template: "{{ value_json.contact }}"
+    device_class: "door"
+
+  - platform: mqtt
+    name: Camera Livingroom
+    state_topic: "yicam/motion"
+    payload_on: "motion_start"
+    payload_off: "motion_stop"
+    device_class: motion
+    
+  - platform: mqtt
+    name: Motion Livingroom
+    state_topic: "stat/livingroom-pir/POWER"
+    payload_on: "1"
+    payload_off: "0"
+    device_class: motion
+    
+  - platform: mqtt
+    name: Motion Hall
+    state_topic: "stat/hall-light/PIR"
+    payload_on: "1"
+    payload_off: "0"
+    device_class: motion
+    
+  - platform: ping
+    host: !secret livingroom_tv_ip
+    name: Tv status
+    scan_interval: 20
+    
+  - platform: template
+    sensors:
+      alarm:
+        friendly_name: "Alarm"
+        value_template: >-
+          {{ not is_state('alarm_control_panel.ha_alarm', 'disarmed') }}
+        icon_template: >-
+          {% if not is_state('alarm_control_panel.ha_alarm', 'disarmed') %}
+            mdi:alarm-light
+          {% else %}
+            mdi:alarm-light-outline
+          {% endif %}
+          
+      livingroom_tv_power:
+        friendly_name: Livingroom TV Power
+        icon_template: >
+          {% if is_state('binary_sensor.tv_status','on') %} mdi:television
+          {% else %} mdi:television-off
+          {% endif %}
+        device_class: power
+        value_template: >-
+          {% if not is_state('binary_sensor.tv_status', 'off') %}
+            true
+          {% endif %}
+
+      alarm_clock:
+        friendly_name: "Alarm clock active"
+        value_template: >-
+          {{ is_state('input_boolean.alarm_weekday', 'on') 
+          and (strptime(states('sensor.date_time'),'%Y-%m-%d, %H:%M').weekday() == 0 or strptime(states('sensor.date_time'),'%Y-%m-%d, %H:%M').weekday() == 1 or strptime(states('sensor.date_time'),'%Y-%m-%d, %H:%M').weekday() == 2 or strptime(states('sensor.date_time'),'%Y-%m-%d, %H:%M').weekday() == 3 or strptime(states('sensor.date_time'),'%Y-%m-%d, %H:%M').weekday() == 4) 
+          or is_state('input_boolean.alarm_weekend', 'on') 
+          and (strptime(states('sensor.date_time'),'%Y-%m-%d, %H:%M').weekday() == 5 or strptime(states('sensor.date_time'),'%Y-%m-%d, %H:%M').weekday() == 6) }}
+      bt_stuck:
+        friendly_name: "BT"
+        value_template: >-
+          {% set btvalues = [
+            states.sensor.mi_t_582d3433871b.last_updated,
+            states.sensor.mi_h_582d3433871b.last_updated]%}
+          {{ (as_timestamp(now())-as_timestamp(btvalues | max)) > 120 }}
+        device_class: problem
+        icon_template: >-
+          {% if is_state("binary_sensor.bt_stuck", True) %}
+            mdi:bluetooth-off
+          {% else %}
+            mdi:bluetooth
+          {% endif %}
+      last_day_of_the_month:
+        friendly_name: 'Last Day of the Month'
+        icon_template: "mdi:calendar"
+        value_template: "{{ (as_timestamp(now()) + 86400)|timestamp_custom('%d', true) == '01' }}"
+          
+  - platform: mqtt
+    name: "Fire Tablet Motion"
+    state_topic: 'tablet/event/onMotion'
+    device_class: motion
+    off_delay: 30
+    payload_on: 'on'
+    payload_off: 'off'
+    value_template: "{% if value_json.event == 'onMotion' %}on{% else %}off{% endif %}"
+    qos: 1
