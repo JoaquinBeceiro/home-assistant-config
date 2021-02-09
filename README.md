@@ -251,7 +251,7 @@
     <tr>
       <td>2</td>
       <td>
-        <img src="images/devices/xiaomi-temperature.jpg" alt="drawing" width="200" />
+        <img src="images/devices/xiaomi-temperature.jpg" alt="Xiaomi temperature sensor" width="200" />
         <h3>Xiaomi temperature/humidity sensor</h3>
       </td>
       <td>
@@ -261,7 +261,7 @@
     <tr>
       <td>1</td>
       <td>
-        <img src="images/devices/cc2531.jpg" alt="drawing" width="200" />
+        <img src="images/devices/cc2531.jpg" alt="Sniffer" width="200" />
         <h3>CC2531 USB</h3>
       </td>
       <td>
@@ -271,7 +271,7 @@
     <tr>
       <td>1</td>
       <td>
-        <img src="images/devices/yi_dome.jpg" alt="drawing" width="200" />
+        <img src="images/devices/yi_dome.jpg" alt="Yi dome camera" width="200" />
         <h3>Yi Dome 1080p</h3>
       </td>
       <td>
@@ -306,6 +306,26 @@
       </td>
       <td>
         <p>Remote controller</p>
+      </td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>
+        <img src="images/devices/aqara-temperature.jpg" alt="Aqara temperature" width="200" />
+        <h3>Aqara temperature/humidity sensor</h3>
+      </td>
+      <td>
+        <p>Outside temperature and humidity</p>
+      </td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>
+        <img src="images/devices/xiaomi-vacuum.jpg" alt="Xiaomi vacuum" width="200" />
+        <h3>Xiaomi Mi Robot Vacuum-Mop Pro</h3>
+      </td>
+      <td>
+        <p>Clean</p>
       </td>
     </tr>
   <tbody>
