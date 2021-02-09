@@ -1,364 +1,425 @@
 # Zigbee2MQTT
-  - platform: mqtt
-    name: Zigbee2mqtt Networkmap
-    state_topic: zigbee2mqtt/bridge/networkmap/raw
-    value_template: >-
-      {{ now().strftime('%Y-%m-%d %H:%M:%S') }}
-    json_attributes_topic: zigbee2mqtt/bridge/networkmap/raw
+- platform: mqtt
+  name: Zigbee2mqtt Networkmap
+  state_topic: zigbee2mqtt/bridge/networkmap/raw
+  value_template: >-
+    {{ now().strftime('%Y-%m-%d %H:%M:%S') }}
+  json_attributes_topic: zigbee2mqtt/bridge/networkmap/raw
 
 # Switch 1
-  - platform: "mqtt"
-    name: Xiaomi Switch 1 
-    state_topic: "zigbee2mqtt/0x00158d0003fb724f"
-    json_attributes_topic: "zigbee2mqtt/0x00158d0003fb724f"
-    availability_topic: "zigbee2mqtt/bridge/state"
-    icon: "mdi:toggle-switch"
-    value_template: "{{ value_json.click }}"
+- platform: "mqtt"
+  name: Xiaomi Switch 1
+  state_topic: !secret zigbee2mqtt_button1
+  json_attributes_topic: !secret zigbee2mqtt_button1
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:toggle-switch"
+  value_template: "{{ value_json.click }}"
 
-  - platform: "mqtt"
-    name: Xiaomi Switch 1 battery
-    state_topic: "zigbee2mqtt/0x00158d0003fb724f"
-    availability_topic: "zigbee2mqtt/bridge/state"
-    unit_of_measurement: "%"
-    device_class: "battery"
-    value_template: "{{ value_json.battery }}"
+- platform: "mqtt"
+  name: Xiaomi Switch 1 battery
+  state_topic: !secret zigbee2mqtt_button1
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  value_template: "{{ value_json.battery }}"
 
-  - platform: "mqtt"
-    name: Xiaomi Switch 1 linkquality
-    state_topic: "zigbee2mqtt/0x00158d0003fb724f"
-    availability_topic: "zigbee2mqtt/bridge/state"
-    icon: "mdi:signal"
-    unit_of_measurement: "lqi"
-    value_template: "{{ value_json.linkquality }}"
+- platform: "mqtt"
+  name: Xiaomi Switch 1 linkquality
+  state_topic: !secret zigbee2mqtt_button1
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:signal"
+  unit_of_measurement: "lqi"
+  value_template: "{{ value_json.linkquality }}"
 
 # Switch 2
-  - platform: "mqtt"
-    name: Xiaomi Switch 2
-    state_topic: "zigbee2mqtt/0x00158d0003fb9322"
-    json_attributes_topic: "zigbee2mqtt/0x00158d0003fb9322"
-    availability_topic: "zigbee2mqtt/bridge/state"
-    icon: "mdi:toggle-switch"
-    value_template: "{{ value_json.click }}"
+- platform: "mqtt"
+  name: Xiaomi Switch 2
+  state_topic: !secret zigbee2mqtt_button2
+  json_attributes_topic: !secret zigbee2mqtt_button2
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:toggle-switch"
+  value_template: "{{ value_json.click }}"
 
-  - platform: "mqtt"
-    name: Xiaomi Switch 2 battery
-    state_topic: "zigbee2mqtt/0x00158d0003fb9322"
-    availability_topic: "zigbee2mqtt/bridge/state"
-    unit_of_measurement: "%"
-    device_class: "battery"
-    value_template: "{{ value_json.battery }}"
+- platform: "mqtt"
+  name: Xiaomi Switch 2 battery
+  state_topic: !secret zigbee2mqtt_button2
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  value_template: "{{ value_json.battery }}"
 
-  - platform: "mqtt"
-    name: Xiaomi Switch 2 linkquality
-    state_topic: "zigbee2mqtt/0x00158d0003fb9322"
-    availability_topic: "zigbee2mqtt/bridge/state"
-    icon: "mdi:signal"
-    unit_of_measurement: "lqi"
-    value_template: "{{ value_json.linkquality }}"
+- platform: "mqtt"
+  name: Xiaomi Switch 2 linkquality
+  state_topic: !secret zigbee2mqtt_button2
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:signal"
+  unit_of_measurement: "lqi"
+  value_template: "{{ value_json.linkquality }}"
 
+# Motion sensor 1
+- platform: "mqtt"
+  name: Xiaomi Motion Sensor illuminance
+  state_topic: !secret zigbee2mqtt_motion1
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "-"
+  device_class: "illuminance"
+  value_template: "{{ value_json.illuminance }}"
 
-  # Motion sensor 1
-  - platform: "mqtt"
-    name: Xiaomi Motion Sensor illuminance
-    state_topic: "zigbee2mqtt/0x00158d0003ce5cb7"
-    availability_topic: "zigbee2mqtt/bridge/state"
-    unit_of_measurement: "-"
-    device_class: "illuminance"
-    value_template: "{{ value_json.illuminance }}"
+- platform: "mqtt"
+  name: Xiaomi Motion Sensor battery
+  state_topic: !secret zigbee2mqtt_motion1
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  value_template: "{{ value_json.battery }}"
 
-  - platform: "mqtt"
-    name: Xiaomi Motion Sensor battery
-    state_topic: "zigbee2mqtt/0x00158d0003ce5cb7"
-    availability_topic: "zigbee2mqtt/bridge/state"
-    unit_of_measurement: "%"
-    device_class: "battery"
-    value_template: "{{ value_json.battery }}"
+- platform: "mqtt"
+  name: Xiaomi Motion Sensor linkquality
+  state_topic: !secret zigbee2mqtt_motion1
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:signal"
+  unit_of_measurement: "lqi"
+  value_template: "{{ value_json.linkquality }}"
 
-  - platform: "mqtt"
-    name: Xiaomi Motion Sensor linkquality
-    state_topic: "zigbee2mqtt/0x00158d0003ce5cb7"
-    availability_topic: "zigbee2mqtt/bridge/state"
-    icon: "mdi:signal"
-    unit_of_measurement: "lqi"
-    value_template: "{{ value_json.linkquality }}"
+# Door sensor 1
+- platform: "mqtt"
+  name: Xiaomi Door Sensor battery
+  state_topic: !secret zigbee2mqtt_door1
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  value_template: "{{ value_json.battery }}"
 
-  # Door sensor 1
-  - platform: "mqtt"
-    name: Xiaomi Door Sensor battery
-    state_topic: "zigbee2mqtt/0x00158d00044b5f11"
-    availability_topic: "zigbee2mqtt/bridge/state"
-    unit_of_measurement: "%"
-    device_class: "battery"
-    value_template: "{{ value_json.battery }}"
+- platform: "mqtt"
+  name: Xiaomi Door Sensor linkquality
+  state_topic: !secret zigbee2mqtt_door1
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:signal"
+  unit_of_measurement: "lqi"
+  value_template: "{{ value_json.linkquality }}"
 
-  - platform: "mqtt"
-    name: Xiaomi Door Sensor linkquality
-    state_topic: "zigbee2mqtt/0x00158d00044b5f11"
-    availability_topic: "zigbee2mqtt/bridge/state"
-    icon: "mdi:signal"
-    unit_of_measurement: "lqi"
-    value_template: "{{ value_json.linkquality }}"
+- platform: mitemp_bt
+  # Water warm
+- platform: mqtt
+  name: WaterHeater Current
+  state_topic: "tele/water-warm/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Current }}"
+  unit_of_measurement: "A"
+  icon: mdi:current-ac
 
+- platform: mqtt
+  name: WaterHeater Power
+  state_topic: "tele/water-warm/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Power }}"
+  unit_of_measurement: "W"
+  icon: mdi:power-plug
 
-  - platform: mitemp_bt
-  # Weather prediction
-  - platform: yr
+- platform: mqtt
+  name: WaterHeater Voltage
+  state_topic: "tele/water-warm/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Voltage }}"
+  unit_of_measurement: "V"
+  icon: mdi:flash
 
+- platform: mqtt
+  name: WaterHeater yesterday
+  state_topic: "tele/water-warm/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Yesterday }}"
+  unit_of_measurement: "W"
+  icon: mdi:power-plug
 
-    # Water warm
-  - platform: mqtt
-    name: WaterHeater Current
-    state_topic: "tele/water-warm/SENSOR"
-    value_template: "{{ value_json['ENERGY'].Current }}"
-    unit_of_measurement: 'A'
-    icon: mdi:current-ac
-    
-  - platform: mqtt
-    name: WaterHeater Power
-    state_topic: "tele/water-warm/SENSOR"
-    value_template: "{{ value_json['ENERGY'].Power }}"
-    unit_of_measurement: 'W'
-    icon: mdi:power-plug
-      
-  - platform: mqtt
-    name: WaterHeater Voltage
-    state_topic: "tele/water-warm/SENSOR"
-    value_template: "{{ value_json['ENERGY'].Voltage }}"
-    unit_of_measurement: 'V'
-    icon: mdi:flash
-    
-  - platform: mqtt
-    name: WaterHeater yesterday
-    state_topic: "tele/water-warm/SENSOR"
-    value_template: "{{ value_json['ENERGY'].Yesterday }}"
-    unit_of_measurement: 'W'    
-    icon: mdi:power-plug
-    
-  - platform: mqtt
-    name: WaterHeater today
-    state_topic: "tele/water-warm/SENSOR"
-    value_template: "{{ value_json['ENERGY'].Today }}"
-    unit_of_measurement: 'W'
-    icon: mdi:power-plug
-    
-  - platform: mqtt
-    name: WaterHeater total
-    state_topic: "tele/water-warm/SENSOR"
-    value_template: "{{ value_json['ENERGY'].Total }}"
-    unit_of_measurement: 'kWh'
-    
-    # Heater
-  - platform: mqtt
-    name: Heater Current
-    state_topic: "tele/heater/SENSOR"
-    value_template: "{{ value_json['ENERGY'].Current }}"
-    unit_of_measurement: 'A'
-    icon: mdi:current-ac
-    
-  - platform: mqtt
-    name: Heater Power
-    state_topic: "tele/heater/SENSOR"
-    value_template: "{{ value_json['ENERGY'].Power }}"
-    unit_of_measurement: 'W'
-    icon: mdi:power-plug
-      
-  - platform: mqtt
-    name: Heater Voltage
-    state_topic: "tele/heater/SENSOR"
-    value_template: "{{ value_json['ENERGY'].Voltage }}"
-    unit_of_measurement: 'V'
-    icon: mdi:flash
-    
-  - platform: mqtt
-    name: Heater yesterday
-    state_topic: "tele/heater/SENSOR"
-    value_template: "{{ value_json['ENERGY'].Yesterday }}"
-    unit_of_measurement: 'W'    
-    icon: mdi:power-plug
-    
-  - platform: mqtt
-    name: Heater today
-    state_topic: "tele/heater/SENSOR"
-    value_template: "{{ value_json['ENERGY'].Today }}"
-    unit_of_measurement: 'W'
-    icon: mdi:power-plug
-    
-  - platform: mqtt
-    name: Heater total
-    state_topic: "tele/heater/SENSOR"
-    value_template: "{{ value_json['ENERGY'].Total }}"
-    unit_of_measurement: 'kWh'
-    
-    # Home
-  - platform: mqtt
-    name: Home Current
-    state_topic: "tele/home/SENSOR"
-    value_template: "{{ value_json['ENERGY'].Current }}"
-    unit_of_measurement: 'A'
-    icon: mdi:current-ac
-    
-  - platform: mqtt
-    name: Home Power
-    state_topic: "tele/home/SENSOR"
-    value_template: "{{ value_json['ENERGY'].Power }}"
-    unit_of_measurement: 'W'
-    icon: mdi:power-plug
-      
-  - platform: mqtt
-    name: Home Voltage
-    state_topic: "tele/home/SENSOR"
-    value_template: "{{ value_json['ENERGY'].Voltage }}"
-    unit_of_measurement: 'V'
-    icon: mdi:flash
-    
-  - platform: mqtt
-    name: Home yesterday
-    state_topic: "tele/home/SENSOR"
-    value_template: "{{ value_json['ENERGY'].Yesterday }}"
-    unit_of_measurement: 'W'    
-    icon: mdi:power-plug
-    
-  - platform: mqtt
-    name: Home today
-    state_topic: "tele/home/SENSOR"
-    value_template: "{{ value_json['ENERGY'].Today }}"
-    unit_of_measurement: 'W'
-    icon: mdi:power-plug
-    
-  - platform: mqtt
-    name: Home total
-    state_topic: "tele/home/SENSOR"
-    value_template: "{{ value_json['ENERGY'].Total }}"
-    unit_of_measurement: 'kWh'
-    icon: mdi:power-plug
+- platform: mqtt
+  name: WaterHeater today
+  state_topic: "tele/water-warm/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Today }}"
+  unit_of_measurement: "W"
+  icon: mdi:power-plug
 
+- platform: mqtt
+  name: WaterHeater total
+  state_topic: "tele/water-warm/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Total }}"
+  unit_of_measurement: "kWh"
 
-    # Refrigerator
-  - platform: mqtt
-    name: Refrigerator Current
-    state_topic: "tele/refrigerator/SENSOR"
-    value_template: "{{ value_json['ENERGY'].Current }}"
-    unit_of_measurement: 'A'
-    icon: mdi:current-ac
-    
-  - platform: mqtt
-    name: Refrigerator Power
-    state_topic: "tele/refrigerator/SENSOR"
-    value_template: "{{ value_json['ENERGY'].Power }}"
-    unit_of_measurement: 'W'
-    icon: mdi:power-plug
-      
-  - platform: mqtt
-    name: Refrigerator Voltage
-    state_topic: "tele/refrigerator/SENSOR"
-    value_template: "{{ value_json['ENERGY'].Voltage }}"
-    unit_of_measurement: 'V'
-    icon: mdi:flash
-    
-  - platform: mqtt
-    name: Refrigerator yesterday
-    state_topic: "tele/refrigerator/SENSOR"
-    value_template: "{{ value_json['ENERGY'].Yesterday }}"
-    unit_of_measurement: 'W'    
-    icon: mdi:power-plug
-    
-  - platform: mqtt
-    name: Refrigerator today
-    state_topic: "tele/refrigerator/SENSOR"
-    value_template: "{{ value_json['ENERGY'].Today }}"
-    unit_of_measurement: 'W'
-    icon: mdi:power-plug
-    
-  - platform: mqtt
-    name: Refrigerator total
-    state_topic: "tele/refrigerator/SENSOR"
-    value_template: "{{ value_json['ENERGY'].Total }}"
-    unit_of_measurement: 'kWh'
-    
-  - platform: time_date
-    display_options:
-      - 'time'
-      - 'date'
-      - 'date_time'
-      - 'date_time_iso'
-      - 'time_date'
-      - 'time_utc'
-      - 'beat'
+  # Heater
+- platform: mqtt
+  name: Heater Current
+  state_topic: "tele/heater/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Current }}"
+  unit_of_measurement: "A"
+  icon: mdi:current-ac
 
-  - platform: template
-    sensors:
-      battery_joaquin_redmi:
-        friendly_name: Redmi Battery
-        unit_of_measurement: '%'
-        value_template: '{{ state_attr("device_tracker.redmi_note_8_pro","battery_level") }}'
-        device_class: battery
-        icon_template: >-
-          {% set battery_level = state_attr("device_tracker.redmi_note_8_pro","battery_level")|int('unknown') %}
-          {% set battery_round = (battery_level|int / 10)|int * 10 %}
-          {% if battery_level == 'unknown' %}
-            mdi:battery-unknown
+- platform: mqtt
+  name: Heater Power
+  state_topic: "tele/heater/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Power }}"
+  unit_of_measurement: "W"
+  icon: mdi:power-plug
+
+- platform: mqtt
+  name: Heater Voltage
+  state_topic: "tele/heater/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Voltage }}"
+  unit_of_measurement: "V"
+  icon: mdi:flash
+
+- platform: mqtt
+  name: Heater yesterday
+  state_topic: "tele/heater/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Yesterday }}"
+  unit_of_measurement: "W"
+  icon: mdi:power-plug
+
+- platform: mqtt
+  name: Heater today
+  state_topic: "tele/heater/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Today }}"
+  unit_of_measurement: "W"
+  icon: mdi:power-plug
+
+- platform: mqtt
+  name: Heater total
+  state_topic: "tele/heater/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Total }}"
+  unit_of_measurement: "kWh"
+
+  # Home
+- platform: mqtt
+  name: Home Current
+  state_topic: "tele/home/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Current }}"
+  unit_of_measurement: "A"
+  icon: mdi:current-ac
+
+- platform: mqtt
+  name: Home Power
+  state_topic: "tele/home/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Power }}"
+  unit_of_measurement: "W"
+  icon: mdi:power-plug
+
+- platform: mqtt
+  name: Home Voltage
+  state_topic: "tele/home/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Voltage }}"
+  unit_of_measurement: "V"
+  icon: mdi:flash
+
+- platform: mqtt
+  name: Home yesterday
+  state_topic: "tele/home/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Yesterday }}"
+  unit_of_measurement: "W"
+  icon: mdi:power-plug
+
+- platform: mqtt
+  name: Home today
+  state_topic: "tele/home/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Today }}"
+  unit_of_measurement: "W"
+  icon: mdi:power-plug
+
+- platform: mqtt
+  name: Home total
+  state_topic: "tele/home/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Total }}"
+  unit_of_measurement: "kWh"
+  icon: mdi:power-plug
+
+  # Refrigerator
+- platform: mqtt
+  name: Refrigerator Current
+  state_topic: "tele/refrigerator/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Current }}"
+  unit_of_measurement: "A"
+  icon: mdi:current-ac
+
+- platform: mqtt
+  name: Refrigerator Power
+  state_topic: "tele/refrigerator/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Power }}"
+  unit_of_measurement: "W"
+  icon: mdi:power-plug
+
+- platform: mqtt
+  name: Refrigerator Voltage
+  state_topic: "tele/refrigerator/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Voltage }}"
+  unit_of_measurement: "V"
+  icon: mdi:flash
+
+- platform: mqtt
+  name: Refrigerator yesterday
+  state_topic: "tele/refrigerator/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Yesterday }}"
+  unit_of_measurement: "W"
+  icon: mdi:power-plug
+
+- platform: mqtt
+  name: Refrigerator today
+  state_topic: "tele/refrigerator/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Today }}"
+  unit_of_measurement: "W"
+  icon: mdi:power-plug
+
+- platform: mqtt
+  name: Refrigerator total
+  state_topic: "tele/refrigerator/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Total }}"
+  unit_of_measurement: "kWh"
+
+- platform: time_date
+  display_options:
+    - "time"
+    - "date"
+    - "date_time"
+    - "date_time_iso"
+    - "time_date"
+    - "time_utc"
+    - "beat"
+
+- platform: template
+  sensors:
+    battery_joaquin_redmi:
+      friendly_name: Redmi Battery
+      unit_of_measurement: "%"
+      value_template: '{{ state_attr("device_tracker.redmi_note_8_pro","battery_level") }}'
+      device_class: battery
+      icon_template: >-
+        {% set battery_level = state_attr("device_tracker.redmi_note_8_pro","battery_level")|int('unknown') %}
+        {% set battery_round = (battery_level|int / 10)|int * 10 %}
+        {% if battery_level == 'unknown' %}
+          mdi:battery-unknown
+        {% else %}
+          {% if battery_round >= 100 %}
+            mdi:battery
+          {% elif battery_round > 0 %}
+            mdi:battery-{{ battery_round }}
           {% else %}
-            {% if battery_round >= 100 %}
-              mdi:battery
-            {% elif battery_round > 0 %}
-              mdi:battery-{{ battery_round }}
-            {% else %}
-              mdi:battery-alert
-            {% endif %}
+            mdi:battery-alert
           {% endif %}
-      outside_temperature:
-        friendly_name: Outside temperature
-        unit_of_measurement: '°C'
-        value_template: '{{ states("sensor.dark_sky_temperature") }}'
-        icon_template: 'mdi:thermometer'
-      outside_humidity:
-        friendly_name: Outside humidity
-        unit_of_measurement: '%'
-        value_template: '{{ states("sensor.dark_sky_humidity") }}'
-        icon_template: 'mdi:water-percent'
-      last_day_of_month:
-        friendly_name: Last day of current month
-        value_template:  >-
-          {% if now().month in [1,3,5,7,8,10,12] %}
-            31
-          {% elif now().month in [4,6,9,11] %}
-            30
-          {% elif now().month == 2 and ((now().year-2000) % 4 > 0) %}
-            28
-          {% elif now().month == 2 and ((now().year-2000) % 4 == 0) %}
-            29
-          {% endif %}
-        icon_template: "mdi:calendar"
-          
-  - platform: darksky
-    api_key: !secret darksky_apikey
-    forecast:
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-    monitored_conditions:
-      - icon
-      - summary
-      - nearest_storm_distance
-      - nearest_storm_bearing
-      - humidity
-      - temperature
-      - temperature_high
-      - temperature_low
-      - apparent_temperature
-      - apparent_temperature_high
-      - apparent_temperature_low
-      - wind_speed
-      - wind_bearing
-      - precip_type
-      - precip_probability
-      - precip_accumulation
-      - precip_intensity
-      - precip_intensity_max
-      - uv_index
-      - daily_summary
-      - pressure
-      - visibility
-      - hourly_summary
+        {% endif %}
+    outside_temperature:
+      friendly_name: Outside temperature
+      unit_of_measurement: "°C"
+      value_template: '{{ states("sensor.dark_sky_temperature") }}'
+      icon_template: "mdi:thermometer"
+    outside_humidity:
+      friendly_name: Outside humidity
+      unit_of_measurement: "%"
+      value_template: '{{ states("sensor.dark_sky_humidity") }}'
+      icon_template: "mdi:water-percent"
+    last_day_of_month:
+      friendly_name: Last day of current month
+      value_template:  >-
+        {% if now().month in [1,3,5,7,8,10,12] %}
+          31
+        {% elif now().month in [4,6,9,11] %}
+          30
+        {% elif now().month == 2 and ((now().year-2000) % 4 > 0) %}
+          28
+        {% elif now().month == 2 and ((now().year-2000) % 4 == 0) %}
+          29
+        {% endif %}
+      icon_template: "mdi:calendar"
+    month_energy_estimation:
+      friendly_name: Month energy estimation
+      value_template: "{{ (states.sensor.monthly_home_energy.state | int / now().day * states('sensor.last_day_of_month') | int) | round(2) }}"
+      unit_of_measurement: "kWh"
+      icon_template: "mdi:power-plug"
+
+- platform: darksky
+  api_key: !secret darksky_apikey
+  forecast:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+  monitored_conditions:
+    - icon
+    - summary
+    - nearest_storm_distance
+    - nearest_storm_bearing
+    - humidity
+    - temperature
+    - temperature_high
+    - temperature_low
+    - apparent_temperature
+    - apparent_temperature_high
+    - apparent_temperature_low
+    - wind_speed
+    - wind_bearing
+    - precip_type
+    - precip_probability
+    - precip_accumulation
+    - precip_intensity
+    - precip_intensity_max
+    - uv_index
+    - daily_summary
+    - pressure
+    - visibility
+    - hourly_summary
+
+- platform: "mqtt"
+  state_topic: !secret zigbee2mqtt_temphum1
+  name: Outside sensor temperature
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "°C"
+  device_class: "temperature"
+  value_template: "{{ value_json.temperature }}"
+
+- platform: "mqtt"
+  state_topic: !secret zigbee2mqtt_temphum1
+  name: Outside sensor pressure
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "hPa"
+  device_class: "pressure"
+  value_template: "{{ value_json.pressure }}"
+
+- platform: "mqtt"
+  state_topic: !secret zigbee2mqtt_temphum1
+  name: Outside sensor humidity
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  device_class: "humidity"
+  value_template: "{{ value_json.humidity }}"
+
+- platform: "mqtt"
+  state_topic: !secret zigbee2mqtt_temphum1
+  name: Outside sensor battery
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  value_template: "{{ value_json.battery }}"
+
+- platform: "mqtt"
+  state_topic: !secret zigbee2mqtt_temphum1
+  name: Outside sensor lqi
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:signal"
+  unit_of_measurement: "lqi"
+  value_template: "{{ value_json.linkquality }}"
+
+- platform: "mqtt"
+  state_topic: !secret zigbee2mqtt_cube
+  name: Cube
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:gesture-double-tap"
+  value_template: "{{ value_json.action }}"
+
+- platform: "mqtt"
+  state_topic: !secret zigbee2mqtt_cube
+  name: Cube battery
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  value_template: "{{ value_json.battery }}"
+
+- platform: "mqtt"
+  state_topic: !secret zigbee2mqtt_cube
+  name: Cube lqi
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:signal"
+  unit_of_measurement: "lqi"
+  value_template: "{{ value_json.linkquality }}"
