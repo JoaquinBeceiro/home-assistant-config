@@ -39,6 +39,7 @@
 - [Software](#software)
 - [Devices](#devices)
 - [Automations](#automations)
+- [Secrets](#secrets)
 - [ToDo list](#todo-list)
 - [Authors](#authors)
 
@@ -379,12 +380,21 @@ Front door sensor **ON**
 - Notify front door open to Telegram and Google Home speakers
 - [Notify if front door is open for 2 minutes to Telegram](https://github.com/JoaquinBeceiro/home-assistant-config/blob/cb9735e2e04e43a8f65ec5079d1865c2396d6d62/config/automations/hall.yaml#L32-L49)
 
+
+## Secrets
+You can find a complete list of secrets used on this project [here](secrets.example.yaml).
+
+
 ## ToDo list
 
 - [x] Dashboard on Amazon Fire 7 tablet with [Fully Kiosk Browser](https://www.fully-kiosk.com/)
 - [x] Aqara cube automations
 - [ ] Improve ADB server to control TVs (open APPs, volume, turn on/off)
 - [ ] Hardware Topology
+- [ ] Rain sensor
+- [ ] Hack motorized roller blind (433MHz)
+- [ ] Add zigbee router/repeater to improve signal
+- [ ] Add scenes
 
 ## Authors
 
