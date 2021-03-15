@@ -8,23 +8,16 @@ good_night_routine:
       entity_id: automation.turn_off_livingroom_lights_on_motion_at_night
     - service: automation.turn_on
       entity_id: automation.notify_and_turn_on_led_lights_on_motion_sensor
-    - service: homeassistant.turn_off
-      entity_id:
-        - switch.living_room_light
-        - switch.hall_light
-        - switch.kitchen_light
-        - switch.bar_light
-        - switch.bedroom_light
-        - light.desk_lamp
-        - light.tv_light
-        - switch.bathroom_waterheater
     - service: light.turn_on
       entity_id: light.head_light
       data:
         brightness: 20
+    - service: scene.turn_on
+      target:
+        entity_id: scene.bed
     - service: notify.telegram
       data_template:
-        message: "😴 Good night!"
+        message: '😴 Good night!'
     - service: media_player.volume_set
       data:
         entity_id: "media_player.bedroom_speaker"
@@ -33,7 +26,7 @@ good_night_routine:
       data_template:
         entity_id: "media_player.bedroom_speaker"
         message: "Good night Joaquin!"
-        language: "en"
+        language: 'en'
 
 # GOOD MORNING ROUTINE
 good_morning_routine:
@@ -49,11 +42,12 @@ good_morning_routine:
       entity_id: light.head_light
       data:
         brightness: 10
-    - service: light.turn_off
-      entity_id: light.tv_light
+    - service: scene.turn_on
+      target:
+        entity_id: scene.wakeup
     - service: notify.telegram
       data_template:
-        message: "🌞 Good morning!"
+        message: '🌞 Good morning!'
     - service: media_player.volume_set
       data:
         entity_id: "media_player.bedroom_speaker"
@@ -62,7 +56,7 @@ good_morning_routine:
       data_template:
         entity_id: "media_player.bedroom_speaker"
         message: "Good morning Joaquin!"
-        language: "en"
+        language: 'en'
 
 # BED WARM TIMER
 start_bed_left_warm_timer:
@@ -73,7 +67,7 @@ start_bed_left_warm_timer:
     - service: timer.start
       data_template:
         entity_id: timer.bed_left_warm_sleep
-        duration: "{{ states.input_number.bed_left_warm_sleep.state | multiply(60) | int }}"
+        duration: '{{ states.input_number.bed_left_warm_sleep.state | multiply(60) | int }}'
 
 start_bed_right_warm_timer:
   alias: Start Bed Right Warm Timer
@@ -83,17 +77,17 @@ start_bed_right_warm_timer:
     - service: timer.start
       data_template:
         entity_id: timer.bed_right_warm_sleep
-        duration: "{{ states.input_number.bed_right_warm_sleep.state | multiply(60) | int }}"
+        duration: '{{ states.input_number.bed_right_warm_sleep.state | multiply(60) | int }}'
 
 # HEAD LIGHT FADE IN
 set_headlight_bright:
-  alias: Set HeadLight bright
-  sequence:
-    - alias: Dim Head Light
-      service: light.turn_on
-      entity_id: light.head_light
-      data_template:
-        brightness: "{{ percentage | int }}"
+    alias: Set HeadLight bright
+    sequence:
+      - alias: Dim Head Light
+        service: light.turn_on
+        entity_id: light.head_light
+        data_template:
+          brightness: '{{ percentage | int }}'
 
 headlight_bright_fade_in:
   alias: Head Light Fade In
@@ -102,67 +96,67 @@ headlight_bright_fade_in:
       entity_id: script.set_headlight_bright
       data:
         variables:
-          percentage: "5"
+            percentage: '5'
+    - delay:
+        minutes: 5 
+    - service: script.turn_on
+      entity_id: script.set_headlight_bright
+      data:
+        variables:
+            percentage: '10'
     - delay:
         minutes: 5
     - service: script.turn_on
       entity_id: script.set_headlight_bright
       data:
         variables:
-          percentage: "10"
+            percentage: '20'
     - delay:
         minutes: 5
     - service: script.turn_on
       entity_id: script.set_headlight_bright
       data:
         variables:
-          percentage: "20"
+            percentage: '35'
     - delay:
         minutes: 5
     - service: script.turn_on
       entity_id: script.set_headlight_bright
       data:
         variables:
-          percentage: "35"
+            percentage: '50'
     - delay:
         minutes: 5
     - service: script.turn_on
       entity_id: script.set_headlight_bright
       data:
         variables:
-          percentage: "50"
+            percentage: '120'
     - delay:
         minutes: 5
     - service: script.turn_on
       entity_id: script.set_headlight_bright
       data:
         variables:
-          percentage: "120"
+            percentage: '170'
     - delay:
         minutes: 5
     - service: script.turn_on
       entity_id: script.set_headlight_bright
       data:
         variables:
-          percentage: "170"
+            percentage: '200'
     - delay:
         minutes: 5
     - service: script.turn_on
       entity_id: script.set_headlight_bright
       data:
         variables:
-          percentage: "200"
-    - delay:
-        minutes: 5
-    - service: script.turn_on
-      entity_id: script.set_headlight_bright
-      data:
-        variables:
-          percentage: "230"
+            percentage: '230'
     - delay:
         minutes: 120
     - service: script.turn_on
       entity_id: script.set_headlight_bright
       data:
         variables:
-          percentage: "255"
+            percentage: '255'

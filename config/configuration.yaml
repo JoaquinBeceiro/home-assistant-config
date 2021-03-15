@@ -90,6 +90,7 @@ camera:
     name: Tablet
     still_image_url: !secret tablet_still_image_url
 
+
 # INPUTS
 input_datetime:
   turn_on_waterheater_mf:
@@ -149,6 +150,17 @@ input_number:
     min: 0
     max: 10000
     unit_of_measurement: kWh
+
+input_text:
+  ute_fixed_price:
+    initial: !secret ute_fixed_price
+  ute_power_price:
+    initial: !secret ute_power_price
+  ute_first_100_price:
+    initial: !secret ute_first_100_price
+  ute_second_price:
+    initial: !secret ute_second_price
+
 
 # ./INPUTS
 
@@ -250,15 +262,15 @@ automation: !include_dir_merge_list automations
 # SCRIPTS
 script: !include_dir_merge_named scripts
 # SWITCHES
-# switch: !include switches.yaml
-# SWITCHES
 switch: !include_dir_merge_list switches
 # BINARY SENSORS
 binary_sensor: !include binary_sensors.yaml
 # SENSORS
-sensor: !include sensors.yaml
+sensor: !include_dir_merge_list sensors
 # ZONES
 zone: !include zones.yaml
+# SCENE
+scene: !include scenes.yaml
 # FRONTEND
 frontend:
   themes: !include_dir_merge_named themes

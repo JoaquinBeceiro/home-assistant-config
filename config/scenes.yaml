@@ -1,0 +1,31 @@
+  - name: Bed
+    icon: "mdi:power-sleep"
+    entities:
+      light.desk_lamp: "off"
+      light.tv_light: "off"
+      switch.kitchen_led: "off"
+      switch.kitchen_light: "off"
+      switch.bedroom_light: "off"
+      switch.outside_light: "off"
+      cover.shellyswitch25_d8f15b12fc5b: 
+        state: "open"
+        current_position: 50
+
+  - name: Wakeup
+    icon: "mdi:power-sleep"
+    entities:
+      cover.shellyswitch25_d8f15b12fc5b: 
+        state: "open"
+        current_position: 95
+
+      
+  - name: Movies 
+    entities:
+      light.desk_lamp:
+        state: "on"
+        brightness: 1
+      light.tv_light: 
+        state: "on"
+        effect: "colorloop"
+        brightness: 255
+        white_value: 255
