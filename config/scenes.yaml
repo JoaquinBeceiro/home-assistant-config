@@ -7,14 +7,14 @@
       switch.kitchen_light: "off"
       switch.bedroom_light: "off"
       switch.outside_light: "off"
-      cover.shellyswitch25_d8f15b12fc5b: 
+      cover.livingroom_cover: 
         state: "open"
         current_position: 50
 
   - name: Wakeup
     icon: "mdi:power-sleep"
     entities:
-      cover.shellyswitch25_d8f15b12fc5b: 
+      cover.livingroom_cover: 
         state: "open"
         current_position: 95
 
