@@ -62,6 +62,7 @@
 
 ![Dashboard Power Consumption](images/screenshots/powerconsumption-dashboard.png)
 
+- Online power consumptions cost ($)
 - Online power consumptions (Home, AC, WaterHeater and Refrigerator)
 - Home power consumption (today, yesterday, week and month)
 - AC power consumption (today and yesterday)
@@ -383,7 +384,7 @@ Every day at **23:59HS**
 ##### Automation tasks
 
 - Notify each power consumption reads (Heater, WaterHeater and Refrigerator) and total of the current day to Telegram
-- [Save power consumptions to Google Spreadsheet](https://github.com/JoaquinBeceiro/home-assistant-config/blob/41c0525266fa52f0d7c0c3110407299596538b52/config/automations/energy.yaml#L51-L82)
+- [Save power consumptions to Google Spreadsheet](https://github.com/JoaquinBeceiro/home-assistant-config/blob/4cc6b108339242588ebe53619984bc27602b5cb2/config/automations/energy.yaml#L4-L36)
 
 #### [Notify power consumption monthly](https://github.com/JoaquinBeceiro/home-assistant-config/blob/cb9735e2e04e43a8f65ec5079d1865c2396d6d62/config/automations/energy.yaml#L35-L49)
 
