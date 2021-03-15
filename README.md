@@ -345,6 +345,16 @@
         <p>Clean</p>
       </td>
     </tr>
+        <tr>
+      <td>1</td>
+      <td>
+        <img src="images/devices/shelly-25.jpg" alt="Shelly 2.5" width="200" />
+        <h3>Shelly 2.5 double relay</h3>
+      </td>
+      <td>
+        <p>Roller Shutter</p>
+      </td>
+    </tr>
   <tbody>
 </table>
 
