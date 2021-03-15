@@ -32,6 +32,7 @@
         *Refrigerator:* {{ states.sensor.refrigerator_today.state }} kWh\n
         *Total:* {{ states.sensor.daily_home_energy.state }} kWh\n\n
         *Total month:* {{ states.sensor.monthly_home_energy.state }} kWh\n
+        *Total month price:* ${{ states.sensor.energy_current_cost.state }}\n
         *Estimation:* {{ (states.sensor.monthly_home_energy.state | int / now().day * states('sensor.last_day_of_month') | int) | round(2) }} kWh"
 
 # MONTHLY POWER CONSUMPTION TO TELEGRAM

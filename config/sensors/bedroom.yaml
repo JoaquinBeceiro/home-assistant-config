@@ -1,0 +1,50 @@
+
+# Switch 1
+- platform: "mqtt"
+  name: Xiaomi Switch 1
+  state_topic: !secret zigbee2mqtt_button1
+  json_attributes_topic: !secret zigbee2mqtt_button1
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:toggle-switch"
+  value_template: "{{ value_json.click }}"
+
+- platform: "mqtt"
+  name: Xiaomi Switch 1 battery
+  state_topic: !secret zigbee2mqtt_button1
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  value_template: "{{ value_json.battery }}"
+
+- platform: "mqtt"
+  name: Xiaomi Switch 1 linkquality
+  state_topic: !secret zigbee2mqtt_button1
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:signal"
+  unit_of_measurement: "lqi"
+  value_template: "{{ value_json.linkquality }}"
+
+# Switch 2
+- platform: "mqtt"
+  name: Xiaomi Switch 2
+  state_topic: !secret zigbee2mqtt_button2
+  json_attributes_topic: !secret zigbee2mqtt_button2
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:toggle-switch"
+  value_template: "{{ value_json.click }}"
+
+- platform: "mqtt"
+  name: Xiaomi Switch 2 battery
+  state_topic: !secret zigbee2mqtt_button2
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  value_template: "{{ value_json.battery }}"
+
+- platform: "mqtt"
+  name: Xiaomi Switch 2 linkquality
+  state_topic: !secret zigbee2mqtt_button2
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:signal"
+  unit_of_measurement: "lqi"
+  value_template: "{{ value_json.linkquality }}"

@@ -1,0 +1,120 @@
+# Zigbee2MQTT
+- platform: mqtt
+  name: Zigbee2mqtt Networkmap
+  state_topic: zigbee2mqtt/bridge/networkmap/raw
+  value_template: >-
+    {{ now().strftime('%Y-%m-%d %H:%M:%S') }}
+  json_attributes_topic: zigbee2mqtt/bridge/networkmap/raw
+
+# Motion sensor 1
+- platform: "mqtt"
+  name: Xiaomi Motion Sensor illuminance
+  state_topic: !secret zigbee2mqtt_motion1
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "-"
+  device_class: "illuminance"
+  value_template: "{{ value_json.illuminance }}"
+
+- platform: "mqtt"
+  name: Xiaomi Motion Sensor battery
+  state_topic: !secret zigbee2mqtt_motion1
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  value_template: "{{ value_json.battery }}"
+
+- platform: "mqtt"
+  name: Xiaomi Motion Sensor linkquality
+  state_topic: !secret zigbee2mqtt_motion1
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:signal"
+  unit_of_measurement: "lqi"
+  value_template: "{{ value_json.linkquality }}"
+
+- platform: mitemp_bt
+ 
+  # Heater
+- platform: mqtt
+  name: Heater Current
+  state_topic: "tele/heater/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Current }}"
+  unit_of_measurement: "A"
+  icon: mdi:current-ac
+
+- platform: mqtt
+  name: Heater Power
+  state_topic: "tele/heater/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Power }}"
+  unit_of_measurement: "W"
+  icon: mdi:power-plug
+
+- platform: mqtt
+  name: Heater Voltage
+  state_topic: "tele/heater/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Voltage }}"
+  unit_of_measurement: "V"
+  icon: mdi:flash
+
+- platform: mqtt
+  name: Heater yesterday
+  state_topic: "tele/heater/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Yesterday }}"
+  unit_of_measurement: "W"
+  icon: mdi:power-plug
+
+- platform: mqtt
+  name: Heater today
+  state_topic: "tele/heater/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Today }}"
+  unit_of_measurement: "W"
+  icon: mdi:power-plug
+
+- platform: mqtt
+  name: Heater total
+  state_topic: "tele/heater/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Total }}"
+  unit_of_measurement: "kWh"
+
+- platform: time_date
+  display_options:
+    - "time"
+    - "date"
+    - "date_time"
+    - "date_time_iso"
+    - "time_date"
+    - "time_utc"
+    - "beat"
+
+- platform: darksky
+  api_key: !secret darksky_apikey
+  forecast:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+  monitored_conditions:
+    - icon
+    - summary
+    - nearest_storm_distance
+    - nearest_storm_bearing
+    - humidity
+    - temperature
+    - temperature_high
+    - temperature_low
+    - apparent_temperature
+    - apparent_temperature_high
+    - apparent_temperature_low
+    - wind_speed
+    - wind_bearing
+    - precip_type
+    - precip_probability
+    - precip_accumulation
+    - precip_intensity
+    - precip_intensity_max
+    - uv_index
+    - daily_summary
+    - pressure
+    - visibility
+    - hourly_summary
+

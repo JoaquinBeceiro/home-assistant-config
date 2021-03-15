@@ -1,0 +1,39 @@
+- platform: "mqtt"
+  state_topic: !secret zigbee2mqtt_temphum1
+  name: Outside sensor temperature
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "°C"
+  device_class: "temperature"
+  value_template: "{{ value_json.temperature }}"
+
+- platform: "mqtt"
+  state_topic: !secret zigbee2mqtt_temphum1
+  name: Outside sensor pressure
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "hPa"
+  device_class: "pressure"
+  value_template: "{{ value_json.pressure }}"
+
+- platform: "mqtt"
+  state_topic: !secret zigbee2mqtt_temphum1
+  name: Outside sensor humidity
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  device_class: "humidity"
+  value_template: "{{ value_json.humidity }}"
+
+- platform: "mqtt"
+  state_topic: !secret zigbee2mqtt_temphum1
+  name: Outside sensor battery
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  value_template: "{{ value_json.battery }}"
+
+- platform: "mqtt"
+  state_topic: !secret zigbee2mqtt_temphum1
+  name: Outside sensor lqi
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:signal"
+  unit_of_measurement: "lqi"
+  value_template: "{{ value_json.linkquality }}"

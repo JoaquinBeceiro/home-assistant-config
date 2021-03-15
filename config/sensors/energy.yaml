@@ -1,0 +1,16 @@
+- platform: template
+  sensors:
+    energy_current_cost:
+      friendly_name: Energy current cost
+      unit_of_measurement: "$"
+      icon_template: "mdi:currency-usd"
+      value_template: "{{
+            (
+            (states('input_text.ute_fixed_price')|float) +
+            (states('input_text.ute_power_price')|float) +
+            ((((states('sensor.monthly_home_energy')|float) - ((states('sensor.monthly_home_energy')|float) - 100))) * 
+            (states('input_text.ute_first_100_price')|float) )  +
+            (((states('sensor.monthly_home_energy')|float) - 100) * 
+            (states('input_text.ute_second_price')|float) ) 
+            ) | round(2)
+            }}"
