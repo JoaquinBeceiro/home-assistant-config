@@ -269,8 +269,10 @@ binary_sensor: !include binary_sensors.yaml
 sensor: !include_dir_merge_list sensors
 # ZONES
 zone: !include zones.yaml
-# SCENE
+# SCENES
 scene: !include scenes.yaml
+# COVERS
+cover: !include covers.yaml
 # FRONTEND
 frontend:
   themes: !include_dir_merge_named themes

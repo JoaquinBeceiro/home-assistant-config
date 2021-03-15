@@ -1,0 +1,16 @@
+  - platform: mqtt
+    name: livingroom_cover
+    command_topic: "shellies/livingroom-rollershutter/roller/0/command"
+    position_topic: "shellies/livingroom-rollershutter/roller/0/pos"
+    set_position_topic: "shellies/livingroom-rollershutter/roller/0/command/pos"
+    availability_topic: "shellies/livingroom-rollershutter/online"
+    payload_available: "true"
+    payload_not_available: "false"
+    qos: 1
+    retain: false
+    payload_open: "open"
+    payload_close: "close"
+    payload_stop: "stop"
+    position_open: 95
+    position_closed: 5
+    optimistic: false
