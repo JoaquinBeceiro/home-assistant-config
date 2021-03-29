@@ -41,4 +41,103 @@
       data:
         entity_id: alarm_control_panel.ha_alarm
         code: !secret alarm_code
+
+# Turn off ALARM
+- alias: 'Turn off alarm - Telegram'
+  trigger:
+    platform: event
+    event_type: telegram_command
+    event_data:
+      command: '/clean'
+  action:
+    - service: alarm_control_panel.alarm_disarm
+      data:
+        entity_id: alarm_control_panel.ha_alarm
+        code: !secret alarm_code
+
+
+# Vacuum clean start
+- alias: 'Vacuum clean start - Telegram'
+  trigger:
+    platform: state
+    entity_id: vacuum.living_room
+    to: 'cleaning'
+  action:
+    - service: notify.telegram
+      data_template:
+        message: '🧹 Start clean...'
+
+# Vacuum clean finish
+- alias: 'Vacuum clean finish - Telegram'
+  trigger:
+    platform: state
+    entity_id: vacuum.living_room
+    from: 'returning'
+    to: 'docked'
+  action:
+    - service: notify.telegram
+      data_template:
+        message: '🧹 Clean completed!'
+
+# Clean command
+- alias: 'Clean command - Telegram'
+  trigger:
+    platform: event
+    event_type: telegram_command
+    event_data:
+      command: '/clean'
+  action:
+    - service: vacuum.start
+      data: 
+        entity_id: vacuum.living_room
+
+# Clean request
+- alias: 'Clean request when leave home - Telegram'
+  trigger:
+    platform: state
+    entity_id: person.joaquin
+    to: 'not_home'
+    for:
+      minutes: 10
+  action:
+    - service: notify.telegram
+      data:
+        title: '*You leave the house*'
+        message: 'Do you want to activate the robot vacuum?'
+        data:
+          inline_keyboard:
+            - '🧹 Clean the house:/clean'
+            - '🚫 No thanks!:/do_nothing'
+
+# TELEGRAM ALARM
+- alias: 'Telegram clean'
+  trigger:
+    platform: event
+    event_type: telegram_callback
+    event_data:
+      command: '/clean'
+  action:
+    - service: telegram_bot.answer_callback_query
+      data_template:
+        callback_query_id: '{{ trigger.event.data.id }}'
+        message: 🧹 Clean starting!
+        show_alert: true
+    - service: vacuum.start
+      data: 
+        entity_id: vacuum.living_room
+
+# TELEGRAM DO NOTHING COMMAND
+- alias: 'Telegram bot that simply acknowledges'
+  trigger:
+    platform: event
+    event_type: telegram_callback
+    event_data:
+      command: "/do_nothing"
+  action:
+    - service: telegram_bot.answer_callback_query
+      data:
+        callback_query_id: "{{ trigger.event.data.id }}"
+        message: "OK, you said no!"
+
+
 ########## ./TELEGRAM COMMANDS ##########
