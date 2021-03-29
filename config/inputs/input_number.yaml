@@ -1,0 +1,36 @@
+  bed_left_warm_sleep:
+    name: Bed Left warm sleep
+    initial: 15
+    min: 0
+    max: 120
+    step: 10
+  bed_right_warm_sleep:
+    name: Bed Right warm sleep
+    initial: 15
+    min: 0
+    max: 120
+    step: 10
+  24hour_power_consumption:
+    name: 24hour_power_consumption
+    mode: box
+    min: 0
+    max: 10000
+    unit_of_measurement: kWh
+  heater_24hour_power_consumption:
+    name: heater_24hour_power_consumption
+    mode: box
+    min: 0
+    max: 10000
+    unit_of_measurement: kWh
+  waterheater_24hour_power_consumption:
+    name: waterheater_24hour_power_consumption
+    mode: box
+    min: 0
+    max: 10000
+    unit_of_measurement: kWh
+  refrigerator_24hour_power_consumption:
+    name: refrigerator_24hour_power_consumption
+    mode: box
+    min: 0
+    max: 10000
+    unit_of_measurement: kWh

@@ -1,0 +1,8 @@
+  ute_fixed_price:
+    initial: !secret ute_fixed_price
+  ute_power_price:
+    initial: !secret ute_power_price
+  ute_first_100_price:
+    initial: !secret ute_first_100_price
+  ute_second_price:
+    initial: !secret ute_second_price

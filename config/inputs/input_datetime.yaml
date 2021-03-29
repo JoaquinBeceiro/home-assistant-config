@@ -1,0 +1,9 @@
+  turn_on_waterheater_mf:
+    name: Time turn on MF
+    has_date: false
+    has_time: true
+  wake_up_time:
+    name: Wake up time
+    has_date: false
+    has_time: true
+    initial: "08:00"

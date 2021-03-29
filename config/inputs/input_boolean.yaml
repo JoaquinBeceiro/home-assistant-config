@@ -1,0 +1,8 @@
+  alarm_weekday:
+    name: Alarm Weekday
+    initial: on
+    icon: mdi:calendar
+  alarm_weekend:
+    name: Alarm Weekend
+    initial: off
+    icon: mdi:calendar

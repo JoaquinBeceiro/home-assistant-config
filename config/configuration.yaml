@@ -90,80 +90,6 @@ camera:
     name: Tablet
     still_image_url: !secret tablet_still_image_url
 
-
-# INPUTS
-input_datetime:
-  turn_on_waterheater_mf:
-    name: Time turn on MF
-    has_date: false
-    has_time: true
-  wake_up_time:
-    name: Wake up time
-    has_date: false
-    has_time: true
-    initial: "08:00"
-
-input_boolean:
-  alarm_weekday:
-    name: Alarm Weekday
-    initial: on
-    icon: mdi:calendar
-  alarm_weekend:
-    name: Alarm Weekend
-    initial: off
-    icon: mdi:calendar
-
-input_number:
-  bed_left_warm_sleep:
-    name: Bed Left warm sleep
-    initial: 15
-    min: 0
-    max: 120
-    step: 10
-  bed_right_warm_sleep:
-    name: Bed Right warm sleep
-    initial: 15
-    min: 0
-    max: 120
-    step: 10
-  24hour_power_consumption:
-    name: 24hour_power_consumption
-    mode: box
-    min: 0
-    max: 10000
-    unit_of_measurement: kWh
-  heater_24hour_power_consumption:
-    name: heater_24hour_power_consumption
-    mode: box
-    min: 0
-    max: 10000
-    unit_of_measurement: kWh
-  waterheater_24hour_power_consumption:
-    name: waterheater_24hour_power_consumption
-    mode: box
-    min: 0
-    max: 10000
-    unit_of_measurement: kWh
-  refrigerator_24hour_power_consumption:
-    name: refrigerator_24hour_power_consumption
-    mode: box
-    min: 0
-    max: 10000
-    unit_of_measurement: kWh
-
-input_text:
-  ute_fixed_price:
-    initial: !secret ute_fixed_price
-  ute_power_price:
-    initial: !secret ute_power_price
-  ute_first_100_price:
-    initial: !secret ute_first_100_price
-  ute_second_price:
-    initial: !secret ute_second_price
-
-
-# ./INPUTS
-
 webhook:
 # ZIGBEE2MQTT
 zigbee2mqtt_networkmap:
@@ -243,8 +169,25 @@ rest_command:
   kiosk_command:
     url: !secret rest_url_kiosk_command
 
+
+# SPOTCAST
+spotcast:
+  sp_dc: !secret spotcast_sp_dc
+  sp_key: !secret spotcast_sp_key
+
+# SPOTIFY
+spotify:
+  client_id: !secret spotify_client_id
+  client_secret: !secret spotify_client_secret
+
 ### INCLUDES ###
 
+# INPUTS
+input_boolean: !include inputs/input_boolean.yaml
+input_datetime: !include inputs/input_datetime.yaml
+input_number: !include inputs/input_number.yaml
+input_select: !include inputs/input_select.yaml
+input_text: !include inputs/input_text.yaml
 # API
 api: !include api.yaml
 # TIMERS

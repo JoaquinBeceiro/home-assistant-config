@@ -1,0 +1,6 @@
+  chromecast_audio:
+    name: Chromecast Audio
+    options:
+      - "Livingroom"
+      - "Bedroom"
+    icon: mdi:cast-audio
