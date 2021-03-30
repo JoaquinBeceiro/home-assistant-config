@@ -247,7 +247,7 @@
       </td>
     </tr>
     <tr>
-      <td>1</td>
+      <td>2</td>
       <td>
         <img src="images/devices/xiaomi-door.jpg" alt="drawing" width="200" />
         <h3>Xiaomi door sensor</h3>
@@ -257,7 +257,7 @@
       </td>
     </tr>
     <tr>
-      <td>1</td>
+      <td>3</td>
       <td>
         <img src="images/devices/xiaomi-motion.jpg" alt="drawing" width="200" />
         <h3>Xiaomi motion sensor</h3>
