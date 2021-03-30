@@ -41,9 +41,9 @@
   value_template: "{{ value_json['ENERGY'].Total }}"
   unit_of_measurement: "kWh"
 
-  # Motion sensor kitchen
+# Motion sensor kitchen
 - platform: "mqtt"
-  name: Xiaomi Motion Sensor kitchen illuminance
+  name: Xiaomi Motion Sensor kitchen voltage
   state_topic: !secret zigbee2mqtt_motion_kitchen
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "V"

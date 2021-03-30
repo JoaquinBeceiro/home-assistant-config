@@ -1,6 +1,6 @@
 # Motion sensor office
 - platform: "mqtt"
-  name: Xiaomi Motion Sensor office illuminance
+  name: Xiaomi Motion Sensor office voltage
   state_topic: !secret zigbee2mqtt_motion_office
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "V"

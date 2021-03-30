@@ -1,6 +1,6 @@
 # Motion sensor livingroom
 - platform: "mqtt"
-  name: Xiaomi Motion Sensor Livingroom illuminance
+  name: Xiaomi Motion Sensor Livingroom voltage
   state_topic: !secret zigbee2mqtt_motion_livingroom
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "V"
