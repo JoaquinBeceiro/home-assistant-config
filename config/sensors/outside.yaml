@@ -32,7 +32,7 @@
 
 - platform: "mqtt"
   state_topic: !secret zigbee2mqtt_temphum1
-  name: Outside sensor lqi
+  name: Outside sensor linkquality
   availability_topic: "zigbee2mqtt/bridge/state"
   icon: "mdi:signal"
   unit_of_measurement: "lqi"
