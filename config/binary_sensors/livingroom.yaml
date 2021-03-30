@@ -1,0 +1,38 @@
+  # Livingroom motion sensor
+  - platform: "mqtt"
+    name: Livingroom Motion Sensor
+    state_topic: !secret zigbee2mqtt_motion_livingroom
+    availability_topic: "zigbee2mqtt/bridge/state"
+    payload_on: true
+    payload_off: false
+    value_template: "{{ value_json.occupancy }}"
+    device_class: "motion"
+
+  - platform: ping
+    host: !secret livingroom_tv_ip
+    name: Tv status
+    scan_interval: 20
+
+  - platform: mqtt
+    name: Camera Livingroom
+    state_topic: "yicam/motion"
+    payload_on: "motion_start"
+    payload_off: "motion_stop"
+    device_class: motion
+    
+  - platform: mqtt
+    name: Motion Livingroom
+    state_topic: "stat/livingroom-pir/POWER"
+    payload_on: "1"
+    payload_off: "0"
+    device_class: motion
+
+  - platform: mqtt
+    name: "Fire Tablet Motion"
+    state_topic: 'tablet/event/onMotion'
+    device_class: motion
+    off_delay: 30
+    payload_on: 'on'
+    payload_off: 'off'
+    value_template: "{% if value_json.event == 'onMotion' %}on{% else %}off{% endif %}"
+    qos: 1

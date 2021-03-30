@@ -1,0 +1,9 @@
+  # Office motion sensor
+  - platform: "mqtt"
+    name: Office Motion Sensor
+    state_topic: !secret zigbee2mqtt_motion_office
+    availability_topic: "zigbee2mqtt/bridge/state"
+    payload_on: true
+    payload_off: false
+    value_template: "{{ value_json.occupancy }}"
+    device_class: "motion"

@@ -20,7 +20,6 @@ homeassistant:
 recorder:
   db_url: !secret recorder_db_url
 
-
 # SmartIR
 smartir:
   update_branch: rc
@@ -169,7 +168,6 @@ rest_command:
   kiosk_command:
     url: !secret rest_url_kiosk_command
 
-
 # SPOTCAST
 spotcast:
   sp_dc: !secret spotcast_sp_dc
@@ -207,7 +205,7 @@ script: !include_dir_merge_named scripts
 # SWITCHES
 switch: !include_dir_merge_list switches
 # BINARY SENSORS
-binary_sensor: !include binary_sensors.yaml
+binary_sensor: !include_dir_merge_list binary_sensors
 # SENSORS
 sensor: !include_dir_merge_list sensors
 # ZONES

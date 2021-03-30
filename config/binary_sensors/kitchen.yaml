@@ -1,0 +1,9 @@
+  # Kitchen motion sensor
+  - platform: "mqtt"
+    name: Kitchen Motion Sensor
+    state_topic: !secret zigbee2mqtt_motion_kitchen
+    availability_topic: "zigbee2mqtt/bridge/state"
+    payload_on: true
+    payload_off: false
+    value_template: "{{ value_json.occupancy }}"
+    device_class: "motion"
