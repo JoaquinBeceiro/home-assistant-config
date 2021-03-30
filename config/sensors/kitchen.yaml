@@ -40,3 +40,28 @@
   state_topic: "tele/refrigerator/SENSOR"
   value_template: "{{ value_json['ENERGY'].Total }}"
   unit_of_measurement: "kWh"
+
+  # Motion sensor kitchen
+- platform: "mqtt"
+  name: Xiaomi Motion Sensor kitchen illuminance
+  state_topic: !secret zigbee2mqtt_motion_kitchen
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "V"
+  device_class: "voltage"
+  value_template: "{{ value_json.voltage }}"
+
+- platform: "mqtt"
+  name: Xiaomi Motion Sensor kitchen battery
+  state_topic: !secret zigbee2mqtt_motion_kitchen
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  value_template: "{{ value_json.battery }}"
+
+- platform: "mqtt"
+  name: Xiaomi Motion Sensor kitchen linkquality
+  state_topic: !secret zigbee2mqtt_motion_kitchen
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:signal"
+  unit_of_measurement: "lqi"
+  value_template: "{{ value_json.linkquality }}"

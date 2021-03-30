@@ -6,31 +6,6 @@
     {{ now().strftime('%Y-%m-%d %H:%M:%S') }}
   json_attributes_topic: zigbee2mqtt/bridge/networkmap/raw
 
-# Motion sensor 1
-- platform: "mqtt"
-  name: Xiaomi Motion Sensor illuminance
-  state_topic: !secret zigbee2mqtt_motion1
-  availability_topic: "zigbee2mqtt/bridge/state"
-  unit_of_measurement: "-"
-  device_class: "illuminance"
-  value_template: "{{ value_json.illuminance }}"
-
-- platform: "mqtt"
-  name: Xiaomi Motion Sensor battery
-  state_topic: !secret zigbee2mqtt_motion1
-  availability_topic: "zigbee2mqtt/bridge/state"
-  unit_of_measurement: "%"
-  device_class: "battery"
-  value_template: "{{ value_json.battery }}"
-
-- platform: "mqtt"
-  name: Xiaomi Motion Sensor linkquality
-  state_topic: !secret zigbee2mqtt_motion1
-  availability_topic: "zigbee2mqtt/bridge/state"
-  icon: "mdi:signal"
-  unit_of_measurement: "lqi"
-  value_template: "{{ value_json.linkquality }}"
-
 - platform: mitemp_bt
  
   # Heater
