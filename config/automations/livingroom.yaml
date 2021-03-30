@@ -22,19 +22,19 @@
   initial_state: false
   trigger:
     - platform: state
-      entity_id: binary_sensor.motion_livingroom
+      entity_id: binary_sensor.livingroom_motion_sensor
       to: 'on'
   action:
     - service: 'light.turn_on'
       data:
-          entity_id: light.tv_light
+          entity_id: light.desk_lamp
           brightness: 1
 
 # Turn off light when detect motion on livingroom 
 - alias: Turn off livingroom lights on motion at night
   trigger:
     - platform: state
-      entity_id: binary_sensor.motion_livingroom
+      entity_id: binary_sensor.livingroom_motion_sensor
       to: 'off'
   condition:
     - condition: time
@@ -42,7 +42,7 @@
       before: '07:10:00'
   action:
     - service: 'light.turn_off'
-      entity_id: light.tv_light
+      entity_id: light.desk_lamp
 
 
 # ON/OFF TV LIGHT depending on TV STATUS

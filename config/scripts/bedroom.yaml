@@ -2,12 +2,6 @@
 good_night_routine:
   alias: "Joaquin good night"
   sequence:
-    - service: automation.turn_on
-      entity_id: automation.turn_on_livingroom_lights_on_motion_at_night
-    - service: automation.turn_on
-      entity_id: automation.turn_off_livingroom_lights_on_motion_at_night
-    - service: automation.turn_on
-      entity_id: automation.notify_and_turn_on_led_lights_on_motion_sensor
     - service: light.turn_on
       entity_id: light.head_light
       data:
@@ -27,17 +21,14 @@ good_night_routine:
         entity_id: "media_player.bedroom_speaker"
         message: "Good night Joaquin!"
         language: 'en'
+    - service: automation.turn_on
+      target:
+        entity_id: automation.turn_on_livingroom_lights_on_motion_at_night
 
 # GOOD MORNING ROUTINE
 good_morning_routine:
   alias: "Joaquin good morning"
   sequence:
-    - service: automation.turn_off
-      entity_id: automation.turn_on_livingroom_lights_on_motion_at_night
-    - service: automation.turn_off
-      entity_id: automation.turn_off_livingroom_lights_on_motion_at_night
-    - service: automation.turn_off
-      entity_id: automation.notify_and_turn_on_led_lights_on_motion_sensor
     - service: light.turn_on
       entity_id: light.head_light
       data:
@@ -57,6 +48,9 @@ good_morning_routine:
         entity_id: "media_player.bedroom_speaker"
         message: "Good morning Joaquin!"
         language: 'en'
+    - service: automation.turn_on
+      target:
+        entity_id: automation.turn_off_livingroom_lights_on_motion_at_night
 
 # BED WARM TIMER
 start_bed_left_warm_timer:
