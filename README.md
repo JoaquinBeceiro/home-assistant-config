@@ -20,7 +20,7 @@
 </p>
 
 <p align="center">
-  <img alt="HA Version" src="https://img.shields.io/badge/HA--Version-0.116.4-9cf"/>
+  <img alt="HA Version" src="https://img.shields.io/badge/HA--Version-2021.3.2-9cf"/>
   <img alt="Mosquitto Version" src="https://img.shields.io/badge/Mosquitto--Version-1.6.9-9cf"/>
   <img alt="VSCode Version" src="https://img.shields.io/badge/VSCode--Version-3.0.2-9cf"/>
   <img alt="MariaDB Version" src="https://img.shields.io/badge/MariaDB--Version-10.4-9cf"/>
