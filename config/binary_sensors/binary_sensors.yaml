@@ -48,4 +48,17 @@
         friendly_name: 'Last Day of the Month'
         icon_template: "mdi:calendar"
         value_template: "{{ (as_timestamp(now()) + 86400)|timestamp_custom('%d', true) == '01' }}"
-        
+      
+      fire_tablet_motion:
+        friendly_name: "Fire Tablet Motion"
+        device_class: motion
+        value_template: "{{ is_state('sensor.motion_wall_panel', 'onMotion') }}"
+
+  - platform: "mqtt"
+    name: Rain sensor
+    state_topic: !secret zigbee2mqtt_door2
+    availability_topic: "zigbee2mqtt/bridge/state"
+    payload_on: true
+    payload_off: false
+    value_template: "{{ value_json.contact }}"
+    device_class: "moisture"
