@@ -96,6 +96,13 @@ zigbee2mqtt_networkmap:
 # SHOPPING LIST
 shopping_list:
 
+# AMAZON ALEXA
+alexa_media:
+  accounts:
+  - email: !secret amazon_email
+    password: !secret amazon_password
+    url: amazon.com
+
 # GOOGLE ASSISTANT
 google_assistant:
   project_id: !secret google_assistant_project_id
@@ -177,6 +184,11 @@ spotcast:
 spotify:
   client_id: !secret spotify_client_id
   client_secret: !secret spotify_client_secret
+
+# SHELL COMMANDS
+shell_command:
+  monitor_on: !secret shell_monitor_on
+  monitor_off: !secret shell_monitor_off
 
 ### INCLUDES ###
 
