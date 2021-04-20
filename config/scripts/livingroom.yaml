@@ -35,7 +35,7 @@ play_music_livingroom:
   - service: media_player.select_source
     data_template: 
       entity_id: media_player.spotify_joaquin_beceiro
-      source: 1f0ccf69-ac8d-4437-b873-580ac5e11b79
+      source: !secret spotify_source_livingroom_echo
   - service: media_player.volume_set
     data:
       entity_id: media_player.spotify
