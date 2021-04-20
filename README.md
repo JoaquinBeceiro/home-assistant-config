@@ -80,7 +80,7 @@
 
 ![Dashboard Tablet](images/photos/tablet-picture.jpeg)
 
-- Tablet with [Fully Kiosk Browser](https://www.fully-kiosk.com/) running HomeAssistant wall mounted
+- Wall mounted Tablet with [Fully Kiosk Browser](https://www.fully-kiosk.com/) running HomeAssistant
 - Using tablet camera as security camera
 - Motion sensor with tablet camera
 - Automatic display on/off with motion sensor
