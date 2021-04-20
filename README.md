@@ -80,11 +80,10 @@
 
 ![Dashboard Tablet](images/photos/tablet-picture.jpeg)
 
-- Tablet with [Fully Kiosk Browser](https://www.fully-kiosk.com/) running HomeAssistant
+- Tablet with [Fully Kiosk Browser](https://www.fully-kiosk.com/) running HomeAssistant wall mounted
 - Using tablet camera as security camera
 - Motion sensor with tablet camera
 - Automatic display on/off with motion sensor
-- WIP: Tablet wall mount
 
 ## Software
 
@@ -313,7 +312,7 @@
         <h3>Tablet Fire 7</h3>
       </td>
       <td>
-        <p>Dashboard mounted on wall</p>
+        <p>Dashboard mounted on wall with <a href="https://www.etsy.com/" target="_blank">etsy</a> wall mount</p>
       </td>
     </tr>
     <tr>
