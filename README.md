@@ -16,7 +16,7 @@
   <img alt="Stars" src="https://img.shields.io/github/stars/JoaquinBeceiro/Home-Assistant-Config.svg?style=plasticr"/>
   <img alt="Last Commit" src="https://img.shields.io/github/last-commit/JoaquinBeceiro/Home-Assistant-Config.svg?style=plasticr"/>
   <img alt="Commit activity" src="https://img.shields.io/github/commit-activity/m/JoaquinBeceiro/home-assistant-config"/>
-  <img alt="Maintenance" src="https://img.shields.io/maintenance/yes/2020"/>
+  <img alt="Maintenance" src="https://img.shields.io/maintenance/yes/2021"/>
 </p>
 
 <p align="center">
