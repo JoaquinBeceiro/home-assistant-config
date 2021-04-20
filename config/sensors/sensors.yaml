@@ -93,3 +93,15 @@
     - visibility
     - hourly_summary
 
+
+# SPOTCAST
+- platform: spotcast
+
+# TABLET
+- platform: rest
+  name: Kiosk Device Info
+  resource: !secret tablet_info
+  json_attributes:
+  - screenBrightness
+  - screenOn
+  value_template: 'OK'

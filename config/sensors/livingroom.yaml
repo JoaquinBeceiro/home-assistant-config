@@ -22,3 +22,25 @@
   icon: "mdi:signal"
   unit_of_measurement: "lqi"
   value_template: "{{ value_json.linkquality }}"
+
+- platform: mqtt
+  name: Motion Wall Panel
+  state_topic: "tablet/event/onMotion"
+  value_template: "{{ value_json.event }}"
+  expire_after: 60
+
+
+- platform: template
+  sensors:
+    livingroom_temp_sensor_battery:
+      friendly_name: Livingroom Temp Sensor Battery
+      unit_of_measurement: "%"
+      device_class: "battery"
+      unit_of_measurement: "%"
+      value_template: "{{ states.sensor.mi_t_582d3433871b.attributes.battery_level }}"
+    bathroom_temp_sensor_battery:
+      friendly_name: Bathroom Temp Sensor Battery
+      unit_of_measurement: "%"
+      device_class: "battery"
+      unit_of_measurement: "%"
+      value_template: "{{ states.sensor.mi_h_582d3438bf0e.attributes.battery_level }}"

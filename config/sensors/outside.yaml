@@ -38,6 +38,13 @@
   unit_of_measurement: "lqi"
   value_template: "{{ value_json.linkquality }}"
 
+- platform: "mqtt"
+  state_topic: !secret zigbee2mqtt_temphum1
+  name: Outside sensor voltage
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "V"
+  device_class: "voltage"
+
 # Rain sensor
 - platform: "mqtt"
   name: Rain Sensor battery
