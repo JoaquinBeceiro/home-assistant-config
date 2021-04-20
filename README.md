@@ -362,49 +362,69 @@
 
 ### Most important automations
 
-#### [Notify when the water heater is ready](https://github.com/JoaquinBeceiro/home-assistant-config/blob/c82da612f44ed7adee008f6d876e8560fad946e4/config/automations/bathroom.yaml#L20-L68)
+<details>
+  <summary>Notify when the water heater is ready</summary>
 
-##### Automation trigger
+  [Go to code!](https://github.com/JoaquinBeceiro/home-assistant-config/blob/c82da612f44ed7adee008f6d876e8560fad946e4/config/automations/bathroom.yaml#L20-L68)
 
-Every time Water Heater is turned on, this automation turns on.
-The Water Heater has a power meter. When this power meter reads 0w and the switch is on, this automations trigers. This automation only run if time is between **09:00HS** and **05:00HS**.
+  ## Automation trigger
 
-##### Automation tasks
+  Every time Water Heater is turned on, this automation turns on.
+  The Water Heater has a power meter. When this power meter reads 0w and the switch is on, this automations trigers. This automation only run if time is between **09:00HS** and **05:00HS**.
 
-- Play on Google Home with TTS
-- Text notification with Telegram
+  ## Automation tasks
 
-#### [Notify power consumption daily](https://github.com/JoaquinBeceiro/home-assistant-config/blob/41c0525266fa52f0d7c0c3110407299596538b52/config/automations/energy.yaml#L5-L33)
+  - Play on Google Home with TTS
+  - Text notification with Telegram
+</details>
 
-##### Automation trigger
+<details>
+  <summary>Notify power consumption daily</summary>
 
-Every day at **23:59HS**
+  [Go to code!](https://github.com/JoaquinBeceiro/home-assistant-config/blob/41c0525266fa52f0d7c0c3110407299596538b52/config/automations/energy.yaml#L5-L33)
 
-##### Automation tasks
+  ### Automation trigger
 
-- Notify each power consumption reads (Heater, WaterHeater and Refrigerator) and total of the current day to Telegram
-- [Save power consumptions to Google Spreadsheet](https://github.com/JoaquinBeceiro/home-assistant-config/blob/4cc6b108339242588ebe53619984bc27602b5cb2/config/automations/energy.yaml#L4-L36)
+  Every day at **23:59HS**
 
-#### [Notify power consumption monthly](https://github.com/JoaquinBeceiro/home-assistant-config/blob/cb9735e2e04e43a8f65ec5079d1865c2396d6d62/config/automations/energy.yaml#L35-L49)
+  ### Automation tasks
 
-##### Automation trigger
+  - Notify each power consumption reads (Heater, WaterHeater and Refrigerator) and total of the current day to Telegram
+  - [Save power consumptions to Google Spreadsheet](https://github.com/JoaquinBeceiro/home-assistant-config/blob/4cc6b108339242588ebe53619984bc27602b5cb2/config/automations/energy.yaml#L4-L36)
 
-Last day of month at **23:59HS**
+</details>
 
-##### Automation tasks
+<details>
+  <summary>Notify power consumption monthly</summary>
 
-- Notify month power consuption to Telegram
+  [Go to code!](https://github.com/JoaquinBeceiro/home-assistant-config/blob/cb9735e2e04e43a8f65ec5079d1865c2396d6d62/config/automations/energy.yaml#L35-L49)
 
-#### [Notify when front door is open](https://github.com/JoaquinBeceiro/home-assistant-config/blob/cb9735e2e04e43a8f65ec5079d1865c2396d6d62/config/automations/hall.yaml#L1-L17)
+  ## Automation trigger
 
-##### Automation trigger
+  Last day of month at **23:59HS**
 
-Front door sensor **ON**
+  ## Automation tasks
 
-##### Automation tasks
+  - Notify month power consuption to Telegram
 
-- Notify front door open to Telegram and Google Home speakers
-- [Notify if front door is open for 2 minutes to Telegram](https://github.com/JoaquinBeceiro/home-assistant-config/blob/cb9735e2e04e43a8f65ec5079d1865c2396d6d62/config/automations/hall.yaml#L32-L49)
+</details>
+
+
+<details>
+  <summary>Notify when front door is open</summary>
+  
+  [Go to code!]](https://github.com/JoaquinBeceiro/home-assistant-config/blob/cb9735e2e04e43a8f65ec5079d1865c2396d6d62/config/automations/hall.yaml#L1-L17)
+
+  ## Automation trigger
+
+  Front door sensor **ON**
+
+  ## Automation tasks
+
+  - Notify front door open to Telegram and Google Home speakers
+  - [Notify if front door is open for 2 minutes to Telegram](https://github.com/JoaquinBeceiro/home-assistant-config/blob/cb9735e2e04e43a8f65ec5079d1865c2396d6d62/config/automations/hall.yaml#L32-L49)
+
+</details>
 
 
 ## Secrets
