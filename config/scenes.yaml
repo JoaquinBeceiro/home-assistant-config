@@ -18,7 +18,6 @@
         state: "open"
         current_position: 95
 
-      
   - name: Movies 
     entities:
       light.desk_lamp:
