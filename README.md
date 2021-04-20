@@ -442,6 +442,7 @@ You can find a complete list of secrets used on this project [here](secrets.exam
 - [ ] Hardware Topology
 - [ ] Add zigbee router/repeater to improve signal
 - [ ] Multi-room audio system
+- [ ] Add records to InfluxDB
 
 ## Authors
 
