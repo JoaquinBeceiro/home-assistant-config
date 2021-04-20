@@ -413,7 +413,7 @@
 <details>
   <summary>Notify when front door is open</summary>
   
-  [Go to code!]](https://github.com/JoaquinBeceiro/home-assistant-config/blob/cb9735e2e04e43a8f65ec5079d1865c2396d6d62/config/automations/hall.yaml#L1-L17)
+  [Go to code!](https://github.com/JoaquinBeceiro/home-assistant-config/blob/cb9735e2e04e43a8f65ec5079d1865c2396d6d62/config/automations/hall.yaml#L1-L17)
 
   ## Automation trigger
 
