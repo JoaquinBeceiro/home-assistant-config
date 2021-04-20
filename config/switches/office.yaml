@@ -1,0 +1,7 @@
+# TURN ON/OFF COMPUTER MONITORS
+  - platform: command_line
+    switches:
+      display_off:
+        command_on: !secret shell_command_monitor_turn_on
+      display_on:
+        command_on: !secret shell_command_monitor_turn_off
