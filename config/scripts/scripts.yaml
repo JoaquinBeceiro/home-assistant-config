@@ -1,0 +1,11 @@
+  # Spotify Start Playback
+  spotify_start:
+    alias: 'Spotify: Start Playback'
+    sequence:
+    - service: spotcast.start
+      data:
+        entity_id: "{% set selected_device = states('input_select.chromecast_audio').lower()\
+          \ %} {{ 'media_player.' + selected_device  }}     \n"
+        force_playback: true
+    mode: single
+    icon: mdi:spotify

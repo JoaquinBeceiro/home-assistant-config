@@ -1,0 +1,89 @@
+clean_hall: 
+  alias: "Clean hall"
+  icon: mdi:door
+  sequence:
+  - service: vacuum.send_command
+    data:
+      command: set_mode_withroom
+      params:
+        - 0
+        - 1
+        - 1
+        - !secret vacuum_zone_hall
+    target:
+      entity_id: vacuum.living_room
+
+clean_kitchen: 
+  alias: "Clean kitchen"
+  icon: mdi:fridge
+  sequence:
+  - service: vacuum.send_command
+    data:
+      command: set_mode_withroom
+      params:
+        - 0
+        - 1
+        - 1
+        - !secret vacuum_zone_kitchen
+    target:
+      entity_id: vacuum.living_room
+
+clean_bedroom: 
+  alias: "Clean bedroom"
+  icon: mdi:bed-empty
+  sequence:
+  - service: vacuum.send_command
+    data:
+      command: set_mode_withroom
+      params:
+        - 0
+        - 1
+        - 1
+        - !secret vacuum_zone_bedroom
+    target:
+      entity_id: vacuum.living_room
+
+clean_livingroom: 
+  alias: "Clean livingroom"
+  icon: mdi:sofa
+  sequence:
+  - service: vacuum.send_command
+    data:
+      command: set_mode_withroom
+      params:
+        - 0
+        - 1
+        - 1
+        - !secret vacuum_zone_livingroom
+    target:
+      entity_id: vacuum.living_room
+
+clean_bathroom: 
+  alias: "Clean bathroom"
+  icon: mdi:toilet
+  sequence:
+  - service: vacuum.send_command
+    data:
+      command: set_mode_withroom
+      params:
+        - 0
+        - 1
+        - 1
+        - !secret vacuum_zone_bathroom
+    target:
+      entity_id: vacuum.living_room
+
+clean_office: 
+  alias: "Clean office"
+  icon: mdi:desk
+  sequence:
+  - service: vacuum.send_command
+    data:
+      command: set_mode_withroom
+      params:
+        - 0
+        - 1
+        - 1
+        - !secret vacuum_zone_office
+    target:
+      entity_id: vacuum.living_room

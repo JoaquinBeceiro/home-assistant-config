@@ -57,6 +57,8 @@ good_morning_routine:
     - service: automation.turn_off
       target:
         entity_id: automation.turn_on_livingroom_lights_on_motion_at_night
+    - service: light.turn_off
+      entity_id: light.desk_lamp
 
 # BED WARM TIMER
 start_bed_left_warm_timer:

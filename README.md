@@ -415,12 +415,13 @@ You can find a complete list of secrets used on this project [here](secrets.exam
 
 - [x] Dashboard on Amazon Fire 7 tablet with [Fully Kiosk Browser](https://www.fully-kiosk.com/)
 - [x] Aqara cube automations
+- [x] Hack motorized roller blind (433MHz)
+- [x] Rain sensor
+- [x] Add scenes
 - [ ] Improve ADB server to control TVs (open APPs, volume, turn on/off)
 - [ ] Hardware Topology
-- [ ] Rain sensor
-- [ ] Hack motorized roller blind (433MHz)
 - [ ] Add zigbee router/repeater to improve signal
-- [ ] Add scenes
+- [ ] Multi-room audio system
 
 ## Authors
 

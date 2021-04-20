@@ -1,25 +1,47 @@
 presence_livingroom_notifications_when_detected:
   alias: "Occupancy Detection - livingroom - Notifications"
   sequence:
-    - condition: state
-      entity_id: binary_sensor.camera_livingroom
-      state: "on"
-    - data:
-        entity_id: camera.living_room
-        filename: /config/tmp/camera_snapshot.jpg
-      service: camera.snapshot
-    - delay: "2"
-    - service: telegram_bot.send_message
-      data_template:
+  - condition: state
+    entity_id: binary_sensor.camera_livingroom
+    state: 'on'
+  - data:
+      entity_id: camera.living_room
+      filename: /config/tmp/camera_snapshot.jpg
+    service: camera.snapshot
+  - delay: '2'
+  - service: telegram_bot.send_message
+    data_template:
         chat_id: !secret telegram_bot_chat_ids
-        title: "🚨"
+        title: '🚨'
         message: "Motion detected! - {{ sensor }}"
-    - data:
-        data:
-          photo:
-            - capture: Snapshoot
-              caption: ""
-              file: /config/tmp/camera_snapshot.jpg
-        message: "Motion detected!"
-        title: "Motion detected!"
-      service: notify.telegram
+  - data:
+      data:
+        photo:
+        - capture: Snapshoot
+          caption:  ""
+          file: /config/tmp/camera_snapshot.jpg
+      message: "Motion detected!"
+      title: "Motion detected!"
+    service: notify.telegram
+
+
+play_music_livingroom:
+  alias: "Play music on Livingroom"
+  sequence:
+  - service: media_player.select_source
+    data: 
+      entity_id: media_player.joaquin_s_echo_dot
+      source: "LG SK5(8F)"
+  - service: media_player.select_source
+    data_template: 
+      entity_id: media_player.spotify_joaquin_beceiro
+      source: 1f0ccf69-ac8d-4437-b873-580ac5e11b79
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.spotify
+      volume_level: '0.50'
+  - service: media_player.play_media
+    data_template:
+      entity_id: media_player.spotify_joaquin_beceiro
+      media_content_id: "https://open.spotify.com/playlist/37i9dQZF1EQpj7X7UK8OOF?si=NhUUo9ATTt6oSRt23BUozQ"
+      media_content_type: playlist
